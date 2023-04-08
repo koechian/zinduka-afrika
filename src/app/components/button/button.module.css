@@ -1,0 +1,14 @@
+.button {
+  padding: 12px;
+  border-radius: 5px;
+  border: none;
+  font-size: 20px;
+}
+.primaryButton {
+  color: var(--white-hex);
+  background-color: var(--dark-green-hex);
+}
+.secondaryButton {
+  color: var(--dark-green-hex);
+  background-color: #e7e9ed;
+}
