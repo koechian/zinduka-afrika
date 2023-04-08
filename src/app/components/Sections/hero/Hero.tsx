@@ -2,8 +2,8 @@ import React from "react";
 import { inter } from "@/app/fonts";
 
 import styles from "./hero.module.css";
-import MyButton from "../button/Button";
-import CustomLink from "../link/CustomLink";
+import MyButton from "../../Utils/button/Button";
+import CustomLink from "../../Utils/link/CustomLink";
 
 const Hero = () => {
   return (
