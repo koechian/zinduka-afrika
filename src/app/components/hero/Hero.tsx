@@ -1,7 +1,9 @@
 import React from "react";
-import styles from "./hero.module.css";
 import { inter } from "@/app/fonts";
+
+import styles from "./hero.module.css";
 import MyButton from "../button/Button";
+import CustomLink from "../link/CustomLink";
 
 const Hero = () => {
   return (
@@ -29,13 +31,35 @@ const Hero = () => {
             className={[styles.cardMed, styles.card].join(" ")}
             style={{ backgroundColor: "#043f2e" }}
           >
-            <div className={styles.cardMedBody}></div>
-            <div className={styles.cardMedFooter}></div>
+            <div className={styles.cardContentWrapper}>
+              <div className={styles.cardMedBody}>
+                <h1 style={{ fontWeight: "bold", fontSize: "110px" }}>65%</h1>
+                <p style={{ fontSize: "20px" }}>
+                  of girls in Kenya are unable to afford sanitary towels on a
+                  monthly basis
+                </p>
+              </div>
+              <div className={styles.cardMedFooter}>
+                <p>Support our Efforts</p>
+                {/* Custom Link Component */}
+                <CustomLink foreground="#043f2e" background="#c8f168" />
+              </div>
+            </div>
           </div>
           <div
             className={[styles.cardSmall, styles.card].join(" ")}
             style={{ backgroundColor: "#222222" }}
-          ></div>
+          >
+            {/* small card content */}
+            <div className={styles.smallcontentWrapper}>
+              <div className=""></div>
+              <div className="">
+                <p>
+                  Help them <br /> Excel
+                </p>
+              </div>
+            </div>
+          </div>
         </div>
         {/* col 2 */}
         <div className={styles.cardsCol}>
@@ -59,7 +83,21 @@ const Hero = () => {
           <div
             className={[styles.cardsCenter, styles.card].join(" ")}
             style={{ backgroundColor: "#D1DCDA" }}
-          ></div>
+          >
+            <div className={styles.cardContentWrapper}>
+              <div className={styles.cardMedBody} style={{ color: "#222222" }}>
+                <p style={{ fontSize: "20px" }}>
+                  Join <strong>500+</strong> people impacting young lives in
+                  Kenya and beyond
+                </p>
+              </div>
+              <div className={styles.cardMedFooter}>
+                <p style={{ color: "#222222" }}>Join the Community</p>
+                {/* Custom Link Component */}
+                <CustomLink />
+              </div>
+            </div>
+          </div>
         </div>
         {/* col 4 */}
         <div className={styles.cardsCol}>
@@ -84,11 +122,33 @@ const Hero = () => {
               backgroundColor: "#C8F168",
               backgroundSize: "unset",
             }}
-          ></div>
+          >
+            <div className={styles.cardContentWrapper}>
+              <div
+                className={styles.cardMedBody}
+                style={{ color: "#222222" }}
+              ></div>
+              <div className={styles.cardMedFooter}>
+                <p style={{ color: "#222222" }}>Explore More</p>
+                {/* Custom Link Component */}
+                <CustomLink />
+              </div>
+            </div>
+          </div>
           <div
             className={[styles.cardSmall, styles.card].join(" ")}
             style={{ backgroundColor: "#043f2e" }}
-          ></div>
+          >
+            <div className={styles.smallcontentWrapper}>
+              <div className=""></div>
+              <div className="">
+                <p style={{ color: "#c8f168" }}>
+                  Lorem Ipsum
+                  <br /> Ador elit
+                </p>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </>

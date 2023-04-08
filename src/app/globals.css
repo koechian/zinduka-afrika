@@ -12,6 +12,10 @@
   --secondary-black-hex: #222222;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   color: rgb(var(--secondary-black-hex));
   background: var(--white-hex);
