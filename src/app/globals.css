@@ -16,3 +16,7 @@ body {
   color: rgb(var(--secondary-black-hex));
   background: var(--white-hex);
 }
+::selection {
+  color: var(--dark-green-hex);
+  background-color: var(--neon-green-hex);
+}
