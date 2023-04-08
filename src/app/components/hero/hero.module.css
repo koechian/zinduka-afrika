@@ -1,0 +1,77 @@
+.hero {
+  height: 60vh;
+  width: 100vw;
+  background-image: url(/greenblob.svg);
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.heroText {
+  text-align: center;
+  font-size: 70px;
+  padding-bottom: 50px;
+}
+.heroSpan {
+  font-size: 150px;
+}
+.hero p {
+  text-align: center;
+  color: grey;
+  font-size: 30px;
+  margin-bottom: 20px;
+}
+.buttonContainer {
+  display: flex;
+  flex-direction: row;
+  gap: 2vw;
+}
+.cardsContainer {
+  width: 100vw;
+  height: 60vh;
+  outline: red dotted 2px;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  padding: 0 10%;
+  gap: 1%;
+}
+.cardsCol {
+  display: grid;
+  grid-template-rows: repeat(10, 1fr);
+  gap: 2%;
+  height: 100%;
+}
+.card {
+  border-radius: 40px;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+.cardMed {
+  grid-row: 2 / span 6;
+}
+.cardSmall {
+  grid-row: span 2;
+}
+.cardsLg {
+  grid-row: 3 / span 7;
+}
+.cardsCenter {
+  grid-row: 6 / span 4;
+}
+.overlay {
+  color: var(--white-hex);
+  font-size: 20px;
+  padding: 5%;
+  background-color: rgba(1, 1, 1, 0.5);
+  height: 100%;
+  width: 100%;
+  border-radius: inherit;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
