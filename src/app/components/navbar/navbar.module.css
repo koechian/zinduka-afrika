@@ -4,14 +4,17 @@
   place-items: center;
   height: 7vh;
   border-bottom: #6e6e6e58 solid 1px;
+  position: sticky;
+  top: 0px;
+  backdrop-filter: blur(30px);
 }
 .nav div {
   height: 100%;
   display: flex;
   place-items: center;
 }
-.linkContainer:hover {
-  border-bottom: var(--dark-green-hex);
+.linkContainer a:hover {
+  color: var(--dark-green-hex);
 }
 .logoText {
   font-size: 28px;
@@ -22,13 +25,16 @@
   background-color: var(--dark-green-hex);
   justify-content: center;
   width: 100%;
+  transition: ease-in-out 250ms;
+  color: var(--neon-green-hex);
 }
 .donateContainer:hover {
   cursor: pointer;
+  background-color: var(--neon-green-hex);
+  color: var(--dark-green-hex);
 }
 
 .donate {
-  color: var(--neon-green-hex);
   letter-spacing: 3.5px;
   font-size: 18px;
 }
