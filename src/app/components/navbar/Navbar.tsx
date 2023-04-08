@@ -2,7 +2,7 @@ import React from "react";
 import styles from "./navbar.module.css";
 import { inter, tenor_sans } from "@/app/fonts";
 
-const Navbar: React.FC = () => {
+const Navbar = () => {
   return (
     <nav className={styles.nav}>
       <div className={tenor_sans.className}>
