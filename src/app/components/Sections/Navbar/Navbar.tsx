@@ -12,7 +12,7 @@ const Navbar = () => {
         <ul className="flex items-center justify-evenly">
           <li>
             <div className="link-container ">
-              <a className="text-xl" href="#">
+              <a className={styles.linkText} href="#">
                 Home
               </a>
             </div>
@@ -30,7 +30,7 @@ const Navbar = () => {
           </li>
           <li className="ml-5">
             <div className="link-container">
-              <a className="text-xl " href="#">
+              <a className={styles.linkText} href="#">
                 About Us
               </a>
             </div>
@@ -48,7 +48,7 @@ const Navbar = () => {
           </li>
           <li className="ml-5">
             <div className="link-container">
-              <a className="text-xl " href="#">
+              <a className={styles.linkText} href="#">
                 Gallery
               </a>
             </div>
@@ -66,7 +66,7 @@ const Navbar = () => {
           </li>
           <li className="ml-5">
             <div className="link-container">
-              <a className="text-xl " href="#">
+              <a className={styles.linkText} href="#">
                 FAQ's
               </a>
             </div>
@@ -84,7 +84,7 @@ const Navbar = () => {
           </li>
           <li className="ml-5">
             <div className="link-container">
-              <a className="text-xl" href="#">
+              <a className={styles.linkText} href="#">
                 Contacts
               </a>
             </div>

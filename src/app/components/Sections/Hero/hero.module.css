@@ -12,17 +12,17 @@
 }
 .heroText {
   text-align: center;
-  font-size: 70px;
-  padding-bottom: 50px;
+  font-size: 3vw;
+  padding-bottom: 1.2vw;
 }
 .heroSpan {
-  font-size: 150px;
+  font-size: 10vw;
 }
 .hero p {
   text-align: center;
   color: grey;
-  font-size: 30px;
-  margin-bottom: 20px;
+  font-size: 1vw;
+  margin-bottom: 1vh;
 }
 .buttonContainer {
   display: flex;
@@ -63,7 +63,7 @@
 }
 .overlay {
   color: var(--white-hex);
-  font-size: 20px;
+  font-size: 1vw;
   padding: 5%;
   background-color: rgba(1, 1, 1, 0.5);
   height: 100%;
@@ -91,7 +91,7 @@
   width: 100%;
   height: 7vh;
   border-radius: inherit;
-  font-size: 16px;
+  font-size: 0.85vw;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -116,7 +116,7 @@
 }
 .smallcontentWrapper div:nth-of-type(2) {
   width: 60%;
-  font-size: 27px;
+  font-size: 1vw;
   display: flex;
   align-items: center;
 }
