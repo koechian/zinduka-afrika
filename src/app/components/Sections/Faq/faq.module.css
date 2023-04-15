@@ -1,0 +1,45 @@
+.wrapper {
+  width: 100vw;
+  height: 100vh;
+  padding: 3%;
+}
+.container {
+  height: 100%;
+  width: 100%;
+  border-radius: 25px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+.link {
+  color: var(--dark-green-hex);
+  text-decoration: underline;
+  text-decoration-style: dotted;
+}
+.heading {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  margin-bottom: 3vw;
+}
+.heading h1 {
+  font-size: 2vw;
+  margin-bottom: 20px;
+}
+.heading h6 {
+  font-size: 1vw;
+}
+.logo {
+  width: 5vw;
+  aspect-ratio: 1/1;
+  overflow: visible;
+  transform: translateY(-25%);
+
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
