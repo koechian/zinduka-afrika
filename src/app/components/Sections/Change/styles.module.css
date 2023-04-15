@@ -2,16 +2,55 @@
   width: 100vw;
   height: 100vh;
   padding: 3%;
-  outline: red dotted;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-direction: row;
+  gap: 2%;
 }
 .wrapper p {
-  font-size: 2vw;
+  font-size: 1.5vw;
   text-align: center;
+  margin-bottom: 4%;
+}
+.wrapper span {
+  font-size: 8vw;
+}
+.center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.imageContainers {
+  display: flex;
+  flex-direction: column;
+  width: 15vw;
+  height: 60%;
+  row-gap: 30%;
+}
+.imageLarge {
+  width: 100%;
+  aspect-ratio: 4/3;
+  border-radius: 20px;
+  align-self: flex-end;
+
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  /* filter: grayscale(100%); */
+}
+
+.imageSmall {
+  width: 80%;
+  aspect-ratio: 4/3;
+  border-radius: 20px;
+  align-self: flex-end;
+
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  /* filter: grayscale(100%); */
 }
