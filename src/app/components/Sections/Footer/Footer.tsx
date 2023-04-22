@@ -15,7 +15,7 @@ const Footer = () => {
                 <img
                   src="/footer-logo.svg"
                   alt="Zinduka Afrika Logo"
-                  style={{ aspectRatio: "initial", width: "50%" }}
+                  style={{ aspectRatio: "initial", width: "30em" }}
                 />
               </div>
               <div>
@@ -23,7 +23,7 @@ const Footer = () => {
                   className={inter.className}
                   style={{
                     color: "var(--beige-hex)",
-                    fontSize: "0.8vw",
+                    fontSize: "0.8em",
                   }}
                 >
                   Arise! Change the world.
@@ -46,7 +46,7 @@ const Footer = () => {
               <div>
                 <a href="">Our Work</a>
                 <a href="">Our Story</a>
-                <a href="">Partner With Us</a>
+                <a href="">Mail</a>
               </div>
               <div>
                 <a href="">Partners</a>

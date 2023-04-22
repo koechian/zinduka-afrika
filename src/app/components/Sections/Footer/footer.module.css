@@ -7,6 +7,7 @@
   padding: inherit;
   display: grid;
   grid-template-rows: 3.3fr 0.7fr;
+  font-size: 1em;
 }
 .top {
   display: grid;
@@ -24,6 +25,7 @@
   gap: 10px;
   color: var(--beige-hex);
   justify-content: flex-end;
+  font-size: 0.8em;
 }
 .leftItems {
   display: flex;
@@ -39,7 +41,7 @@
   font-size: 1em;
 }
 .locationIcon {
-  font-size: 1.5vw;
+  font-size: 1.5em;
   aspect-ratio: 1/1;
 }
 .link {
@@ -71,7 +73,7 @@
 }
 .donateButton {
   border-radius: 40px;
-  width: 50%;
+  width: 15em;
   padding: 0.5em;
   padding-left: 2.5em;
   justify-content: space-between;
