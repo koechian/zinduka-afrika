@@ -1,0 +1,40 @@
+.wrapper {
+  width: 100vw;
+  height: 40vh;
+  padding: 2%;
+}
+.container {
+  background-color: var(--dark-green-hex);
+  height: 100%;
+  width: 100%;
+  border-radius: 20px;
+  padding: inherit;
+
+  display: grid;
+  grid-template-rows: 3.3fr 0.7fr;
+}
+.bottom {
+  padding: inherit;
+  display: grid;
+  grid-template-columns: auto auto auto;
+  border-top: solid #f2f4ea55 0.5px;
+  color: var(--beige-hex);
+}
+.cardMedFooter {
+  width: 30%;
+  border-radius: 20px;
+  font-size: 0.85vw;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10% 5%;
+  background-color: #97a3a1b7;
+  color: var(--beige-hex);
+}
+
+.leftItems_top > div {
+  margin-bottom: 1%;
+}
+.location span {
+  display: inline;
+}
