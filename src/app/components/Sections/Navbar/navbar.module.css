@@ -2,7 +2,7 @@
   display: grid;
   grid-template-columns: 1fr 3fr 0.5fr;
   place-items: center;
-  height: 7vh;
+  height: 3em;
   border-bottom: #6e6e6e58 solid 1px;
   position: sticky;
   top: 0px;
@@ -18,10 +18,16 @@
 .linkContainer a:hover {
   color: var(--dark-green-hex);
 }
+.navLinks ul {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
 .logoText {
-  font-size: 1.5vw;
+  font-size: 1em;
   letter-spacing: 4.5%;
   color: var(--dark-green-hex);
+  white-space: nowrap;
 }
 .donateContainer {
   background-color: var(--dark-green-hex);
@@ -38,8 +44,25 @@
 
 .donate {
   letter-spacing: 3.5px;
-  font-size: 1.15vw;
+  font-size: 0.8em;
 }
 .linkText {
-  font-size: 1vw;
+  font-size: 0.7em;
+}
+
+@media (max-width: 767px) {
+  .navLinks {
+    display: none !important;
+  }
+  .nav {
+    display: flex;
+    padding: 0 0 0 5%;
+    justify-content: space-between;
+  }
+  .logoText {
+    letter-spacing: 2%;
+  }
+  .donateContainer {
+    width: 30%;
+  }
 }

@@ -9,7 +9,7 @@ const Navbar = () => {
         <h1 className={styles.logoText}>ZINDUKA AFRIKA</h1>
       </div>
       <div className={styles.navLinks}>
-        <ul className="flex items-center justify-evenly">
+        <ul>
           <li>
             <div className="link-container ">
               <a className={styles.linkText} href="#">
