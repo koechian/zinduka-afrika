@@ -15,12 +15,12 @@ const CustomLink = ({
         backgroundColor: background,
         padding: "5%",
         borderRadius: "inherit",
+        width: "20%",
+        aspectRatio: "1/1",
       }}
     >
       <svg
         xmlns="http://www.w3.org/2000/svg"
-        width="32"
-        height="32"
         fill={foreground}
         viewBox="0 0 256 256"
       >
