@@ -38,8 +38,12 @@
   aspect-ratio: 1/1;
   overflow: visible;
   transform: translateY(-25%);
+  z-index: 1;
 
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
+}
+.questions {
+  max-width: 75%;
 }

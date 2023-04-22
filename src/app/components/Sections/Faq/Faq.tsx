@@ -18,7 +18,7 @@ const Faq = () => {
           <h1>Frequenty Asked Questions</h1>
           <h6 className={inter.className}>
             Any other questions?{" "}
-            <a className={styles.link} href="">
+            <a className={styles.link} href="mailto:zinduka-afrika@gmail.com">
               Email us,
             </a>{" "}
             we would be glad to help
@@ -27,7 +27,7 @@ const Faq = () => {
         <div className={styles.questions}>
           <Question
             question="Who are you?"
-            answer="Zinduka Afrika (ZAF) is a Social Action agent of the International Christian Centre (ICC). It is the arm through which ICC Churches reaches out to impact the community socio-economically. Learn more about us."
+            answer="Zinduka Afrika (ZAF) is a Social Action agent of the International Christian Centre (ICC) registered in Kenya in March 2004 as a Non-Governmental Organization in Kenya and it operates as a ministry under the Social Transformation arm of International Christian Center (ICC) Church, which is an affiliate of Kenya Assemblies of God(KAG) church."
           />
           <Question
             question="Can I donate goods and services instead of money?"
