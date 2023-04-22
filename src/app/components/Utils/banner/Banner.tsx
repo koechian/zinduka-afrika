@@ -10,14 +10,14 @@ const Banner = () => {
   return (
     <div className={styles.container}>
       <div className={[styles.topBanner, styles.banner].join(" ")}>
-        {spans.map((span: string) => (
-          <span> {span}</span>
+        {spans.map((span: string, index: number) => (
+          <span key={index}> {span}</span>
         ))}
       </div>
       <div className={[styles.bottomBanner, styles.banner].join(" ")}>
         <span>the world * *</span>
-        {spans.map((span: string) => (
-          <span> {span}</span>
+        {spans.map((span: string, index: number) => (
+          <span key={index}> {span}</span>
         ))}
       </div>
     </div>
