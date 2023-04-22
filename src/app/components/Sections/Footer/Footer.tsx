@@ -36,7 +36,9 @@ const Footer = () => {
                 <div>
                   <MdShareLocation />
                 </div>
-                ICC Imara Grounds
+                <a href="https://goo.gl/maps/rSCvur5k9s4QDLPm8" target="_Blank">
+                  ICC Imara Grounds
+                </a>
               </span>
             </div>
           </div>
