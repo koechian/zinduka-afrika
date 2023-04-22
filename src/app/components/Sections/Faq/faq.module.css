@@ -1,6 +1,4 @@
 .wrapper {
-  width: 100vw;
-  height: 100vh;
   padding: 3%;
 }
 .container {
@@ -14,6 +12,7 @@
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
+  padding: 1em;
 }
 .link {
   color: var(--dark-green-hex);
@@ -24,20 +23,19 @@
   display: flex;
   align-items: center;
   flex-direction: column;
-  margin-bottom: 3vw;
+  margin-bottom: 3em;
 }
 .heading h1 {
-  font-size: 2vw;
+  font-size: 2em;
   margin-bottom: 20px;
 }
 .heading h6 {
-  font-size: 1vw;
+  font-size: 1em;
 }
 .logo {
-  width: 5vw;
+  width: 3em;
   aspect-ratio: 1/1;
   overflow: visible;
-  transform: translateY(-25%);
   z-index: 1;
 
   background-repeat: no-repeat;

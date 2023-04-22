@@ -8,9 +8,9 @@
 
 .question {
   color: var(--dark-green-hex);
-  font-size: 1.4vw;
+  font-size: 1.4em;
 }
 .answer {
   width: 90%;
-  font-size: large;
+  font-size: 0.8em;
 }
