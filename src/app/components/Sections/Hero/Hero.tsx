@@ -33,8 +33,8 @@ const Hero = () => {
           >
             <div className={styles.cardContentWrapper}>
               <div className={styles.cardMedBody}>
-                <h1 style={{ fontWeight: "bold", fontSize: "5vw" }}>65%</h1>
-                <p style={{ fontSize: "1vw" }}>
+                <h1 style={{ fontWeight: "bold", fontSize: "3em" }}>65%</h1>
+                <p style={{ fontSize: "1em" }}>
                   of girls in Kenya are unable to afford sanitary towels on a
                   monthly basis
                 </p>
@@ -86,7 +86,7 @@ const Hero = () => {
           >
             <div className={styles.cardContentWrapper}>
               <div className={styles.cardMedBody} style={{ color: "#222222" }}>
-                <p style={{ fontSize: "1vw" }}>
+                <p style={{ fontSize: "0.7em" }}>
                   Join <strong>500+</strong> people impacting young lives in
                   Kenya and beyond
                 </p>
