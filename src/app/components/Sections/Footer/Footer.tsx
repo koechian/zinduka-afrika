@@ -2,7 +2,7 @@ import React from "react";
 import styles from "./footer.module.css";
 import { inter } from "@/app/fonts";
 import { MdShareLocation } from "react-icons/md";
-import { IconContext } from "react-icons";
+import CustomLink from "../../Utils/link/CustomLink";
 
 const Footer = () => {
   return (
@@ -15,7 +15,7 @@ const Footer = () => {
                 <img
                   src="/footer-logo.svg"
                   alt="Zinduka Afrika Logo"
-                  style={{ aspectRatio: "initial", width: "14%" }}
+                  style={{ aspectRatio: "initial", width: "50%" }}
                 />
               </div>
               <div>
@@ -33,21 +33,49 @@ const Footer = () => {
 
             <div className={styles.location}>
               <span>
-                <div>
-                  <MdShareLocation />
-                </div>
+                <MdShareLocation className={styles.locationIcon} />
                 <a href="https://goo.gl/maps/rSCvur5k9s4QDLPm8" target="_Blank">
                   ICC Imara Grounds
                 </a>
               </span>
             </div>
           </div>
-          <div className={styles.rightItems}></div>
+          <div></div>
+          <div className={styles.rightItems}>
+            <div>
+              <div>
+                <a href="">Our Work</a>
+                <a href="">Our Story</a>
+                <a href="">Partner With Us</a>
+              </div>
+              <div>
+                <a href="">Partners</a>
+                <a href="">Gallery</a>
+                <a href="">Contact Us</a>
+              </div>
+              <div>
+                <a href="">LinkedIn</a>
+                <a href="">Facebook</a>
+                <a href="">Twitter</a>
+              </div>
+            </div>
+          </div>
         </div>
         <div className={styles.bottom}>
-          <div>2023 Copyright</div>
-          <div className={inter.className}>website by koechian</div>
-          <div>Donate Now</div>
+          <div>© 2023 Zinduka Afrika Foundation</div>
+          <div className={inter.className}>
+            website by&nbsp;
+            <a className={styles.link} href="">
+              {" "}
+              koechian
+            </a>
+          </div>
+          <div>
+            <div className={styles.donateButton}>
+              Donate Now
+              <CustomLink foreground="#043F2E" background="#C8F168" />
+            </div>
+          </div>
         </div>
       </div>
     </div>
