@@ -10,10 +10,10 @@ const Numbers = () => {
         style={{ backgroundImage: "url(/numbers.webp" }}
       >
         <div className={styles.titleText}>
-          <h1 style={{ fontSize: "4vw" }}>Z.A.F by the Numbers</h1>
+          <h1 style={{ fontSize: "2.4em" }}>ZAF by the Numbers</h1>
           <p
             className={inter.className}
-            style={{ fontSize: "1vw", color: "#D1DCDA", textAlign: "center" }}
+            style={{ fontSize: "1em", color: "#D1DCDA", textAlign: "center" }}
           >
             Get involved and positively impact a young life through Zinduka
             Afrika
@@ -23,7 +23,7 @@ const Numbers = () => {
           <div className={styles.numbersDiv}>
             <div
               className={boska.className}
-              style={{ fontSize: "7vw", fontWeight: "bold" }}
+              style={{ fontSize: "4em", fontWeight: "bold" }}
             >
               900
             </div>
@@ -36,7 +36,7 @@ const Numbers = () => {
           <div className={styles.numbersDiv}>
             <div
               className={boska.className}
-              style={{ fontSize: "7vw", fontWeight: "bold" }}
+              style={{ fontSize: "4em", fontWeight: "bold" }}
             >
               60
             </div>
@@ -49,7 +49,7 @@ const Numbers = () => {
           <div className={styles.numbersDiv}>
             <div
               className={boska.className}
-              style={{ fontSize: "7vw", fontWeight: "bold" }}
+              style={{ fontSize: "4em", fontWeight: "bold" }}
             >
               88
             </div>
@@ -62,7 +62,7 @@ const Numbers = () => {
           <div className={styles.numbersDiv}>
             <div
               className={boska.className}
-              style={{ fontSize: "7vw", fontWeight: "bold" }}
+              style={{ fontSize: "4em", fontWeight: "bold" }}
             >
               12
             </div>

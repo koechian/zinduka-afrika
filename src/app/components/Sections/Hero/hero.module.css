@@ -29,9 +29,11 @@
   gap: 2em;
 }
 .cardsContainer {
+  padding: 0 5em;
+}
+.coloumnsWrapper {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
-  padding: 0 5em;
   gap: 0.5em;
 }
 .cardsCol {
@@ -128,7 +130,7 @@
   color: var(--beige-hex);
 }
 
-@media (max-width: 767px) {
+@media (max-width: 843px) {
   .buttonContainer {
     gap: 2em;
     margin-bottom: 3em;
