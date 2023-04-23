@@ -117,15 +117,45 @@
   display: flex;
   align-items: center;
 }
+.mobileTitle {
+  display: none;
+}
+.mobileColoumn {
+  display: none;
+}
+.mobileTitle h1 {
+  font-size: 2.4em;
+  color: var(--beige-hex);
+}
 
 @media (max-width: 767px) {
   .buttonContainer {
-    gap: 3em;
+    gap: 2em;
     margin-bottom: 3em;
+  }
+  .mobileTitle {
+    display: inline;
   }
   .cardsContainer {
     background-color: var(--dark-green-hex);
     display: flex;
     flex-direction: column;
+    padding: 1em 3em 2em 4em;
+  }
+  .coloumnsWrapper {
+    display: none;
+  }
+  .mobileColoumn {
+    display: flex;
+    flex-direction: column;
+    gap: 4em;
+  }
+  .overlay {
+    justify-content: space-between;
+    padding-top: 10em;
+  }
+  .overlay span:last-of-type {
+    max-width: 80%;
+    font-size: 0.85em;
   }
 }
