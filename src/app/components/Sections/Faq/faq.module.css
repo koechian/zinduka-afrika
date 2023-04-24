@@ -45,3 +45,17 @@
 .questions {
   max-width: 75%;
 }
+@media (max-width: 843px) {
+  .heading h1 {
+    font-size: 1.32em;
+    text-align: center;
+    margin-bottom: 0.6em;
+  }
+  .heading h6 {
+    font-size: 0.8em;
+    text-align: center;
+  }
+  .questions {
+    max-width: unset;
+  }
+}

@@ -26,5 +26,7 @@
 @media (max-width: 767px) {
   .nav {
     display: flex;
+    width: 80vw;
+    font-size: 0.9em;
   }
 }

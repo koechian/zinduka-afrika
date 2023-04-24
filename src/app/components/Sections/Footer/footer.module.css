@@ -8,6 +8,7 @@
   display: grid;
   grid-template-rows: 3.3fr 0.7fr;
   font-size: 1em;
+  height: 100%;
 }
 .top {
   display: grid;
@@ -85,27 +86,38 @@
 }
 
 /* Responsive styles */
-@media screen and (max-width: 768px) {
+@media (max-width: 843px) {
+  .wrapper {
+    padding-bottom: 2em;
+  }
+  .container {
+    display: flex;
+    flex-direction: column;
+  }
   .top {
-    grid-template-columns: 1fr;
-    gap: 20px;
+    display: flex;
+    flex-direction: column;
+  }
+  .leftItems_top div:last-of-type {
+    margin: 0.5em 0 0 1em;
+    text-align: center;
   }
   .rightItems > div {
-    grid-template-columns: 1fr;
-    gap: 20px;
-    justify-items: center;
+    grid-template-columns: unset;
+    grid-template-rows: repeat(3, 1fr);
   }
-  .leftItems {
-    flex-direction: row;
-    justify-content: space-between;
+  .rightItems > div div {
     align-items: center;
-  }
-  .locationIcon {
-    font-size: 4vw;
+    font-size: 1em;
+    margin: 0 0 2em 0;
   }
   .bottom {
-    grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
-    gap: 10px;
-    justify-items: center;
+    padding-top: 0.4em;
+  }
+
+  .donateButtonWrapper,
+  .location,
+  .personalAttrib {
+    display: none !important;
   }
 }

@@ -1,6 +1,6 @@
 .container {
   width: 100%;
-  height: 10vh;
+  height: 6em;
   display: flex;
   flex-direction: column;
 }
@@ -10,7 +10,7 @@
   display: flex;
   align-items: center;
   overflow: hidden;
-  font-size: 1.4vw;
+  font-size: 1.4em;
 }
 .topBanner {
   background-color: var(--dark-green-hex);

@@ -29,7 +29,7 @@ const Numbers = () => {
             </div>
             <div className={styles.text}>
               <p className={inter.className}>
-                Young lives impacted through scholarship and ministry
+                Young lives impacted through ZAF ministry
               </p>
             </div>
           </div>
@@ -51,12 +51,10 @@ const Numbers = () => {
               className={boska.className}
               style={{ fontSize: "4em", fontWeight: "bold" }}
             >
-              88
+              50
             </div>
             <div className={styles.text}>
-              <p className={inter.className}>
-                Scholarships awarded this year alone
-              </p>
+              <p className={inter.className}>Scholarships awarded</p>
             </div>
           </div>
           <div className={styles.numbersDiv}>
@@ -64,12 +62,10 @@ const Numbers = () => {
               className={boska.className}
               style={{ fontSize: "4em", fontWeight: "bold" }}
             >
-              12
+              2k+
             </div>
             <div className={styles.text}>
-              <p className={inter.className}>
-                Outreach missions to new locations
-              </p>
+              <p className={inter.className}>Sanitary Towels donated</p>
             </div>
           </div>
         </div>

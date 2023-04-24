@@ -50,7 +50,9 @@ const Footer = () => {
               </div>
               <div>
                 <a href="">Partners</a>
-                <a href="">Gallery</a>
+                <a href="https://goo.gl/maps/rSCvur5k9s4QDLPm8" target="_Blank">
+                  Visit Us
+                </a>
                 <a href="">Contact Us</a>
               </div>
               <div>
@@ -63,14 +65,14 @@ const Footer = () => {
         </div>
         <div className={styles.bottom}>
           <div>© 2023 Zinduka Afrika Foundation</div>
-          <div className={inter.className}>
+          <div className={[inter.className, styles.personalAttrib].join(" ")}>
             website by&nbsp;
             <a className={styles.link} href="">
               {" "}
               koechian
             </a>
           </div>
-          <div>
+          <div className={styles.donateButtonWrapper}>
             <div className={styles.donateButton}>
               Donate Now
               <CustomLink foreground="#043F2E" background="#C8F168" />

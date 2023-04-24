@@ -14,12 +14,12 @@
   padding: 5%;
 }
 .container p {
-  font-size: 1.5vw;
+  font-size: 1.3em;
   text-align: center;
   margin-bottom: 4%;
 }
 .container span {
-  font-size: 8vw;
+  font-size: 6em;
 }
 .center {
   display: flex;
@@ -56,4 +56,19 @@
   background-size: cover;
   background-repeat: no-repeat;
   /* filter: grayscale(100%); */
+}
+
+@media (max-width: 843px) {
+  .imageContainers {
+    display: none;
+  }
+  .wrapper {
+    padding: 10% 0 0 0;
+  }
+  .container p {
+    max-width: 65%;
+  }
+  .container span {
+    font-size: 5em;
+  }
 }

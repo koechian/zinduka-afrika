@@ -24,6 +24,7 @@ const ChangeSection = () => {
         <div className={styles.center}>
           <p>
             Join us and be part of a positive change in the world. <br />
+            <br />
             With over:
           </p>
           <div>

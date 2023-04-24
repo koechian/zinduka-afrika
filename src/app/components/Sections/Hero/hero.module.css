@@ -126,7 +126,7 @@
   display: none;
 }
 .mobileTitle h1 {
-  font-size: 2.4em;
+  font-size: 2.1em;
   color: var(--beige-hex);
 }
 
@@ -142,7 +142,7 @@
     background-color: var(--dark-green-hex);
     display: flex;
     flex-direction: column;
-    padding: 1em 3em 2em 4em;
+    padding: 2em 1em 2em 1em;
   }
   .coloumnsWrapper {
     display: none;
