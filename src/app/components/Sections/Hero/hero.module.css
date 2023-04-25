@@ -1,7 +1,8 @@
 .hero {
   width: 100vw;
+  padding: 5%;
   background-image: url(/greenblob.svg);
-  background-size: cover;
+  background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
   display: flex;
@@ -29,12 +30,14 @@
   gap: 2em;
 }
 .cardsContainer {
-  padding: 0 5em;
+  padding: 0 4em;
+  height: 60vh;
 }
 .coloumnsWrapper {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   gap: 0.5em;
+  height: 100%;
 }
 .cardsCol {
   display: grid;
@@ -47,7 +50,7 @@
   background-size: cover;
   background-repeat: no-repeat;
 
-  font-size: 1em;
+  font-size: 1.2em;
 }
 .cardMed {
   grid-row: 2 / span 6;
@@ -63,7 +66,7 @@
 }
 .overlay {
   color: var(--white-hex);
-  font-size: 1em;
+  font-size: 1.2em;
   padding: 1em;
   background-color: rgba(1, 1, 1, 0.5);
   height: 100%;
@@ -73,6 +76,9 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+}
+.overlay span:nth-of-type(2) {
+  font-size: 0.7em;
 }
 .cardContentWrapper {
   height: 100%;
@@ -86,6 +92,9 @@
 .cardMedBody {
   text-align: center;
   color: var(--beige-hex);
+}
+.cardMedBody p {
+  font-size: 1em;
 }
 .cardMedFooter {
   width: 100%;
@@ -131,6 +140,10 @@
 }
 
 @media (max-width: 843px) {
+  .hero {
+    padding: unset;
+    background-size: cover;
+  }
   .buttonContainer {
     gap: 2em;
     margin-bottom: 3em;
@@ -143,6 +156,7 @@
     display: flex;
     flex-direction: column;
     padding: 2em 1em 2em 1em;
+    height: unset;
   }
   .coloumnsWrapper {
     display: none;
@@ -155,6 +169,7 @@
   .overlay {
     justify-content: space-between;
     padding-top: 10em;
+    font-size: 1em;
   }
   .overlay span:last-of-type {
     max-width: 80%;

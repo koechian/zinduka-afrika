@@ -37,14 +37,14 @@ const Hero = () => {
             >
               <div className={styles.cardContentWrapper}>
                 <div className={styles.cardMedBody}>
-                  <h1 style={{ fontWeight: "bold", fontSize: "3em" }}>65%</h1>
-                  <p style={{ fontSize: "1em" }}>
+                  <h1 style={{ fontWeight: "bold", fontSize: "4em" }}>65%</h1>
+                  <p style={{ fontSize: "1.1em" }}>
                     of girls in Kenya are unable to afford sanitary towels on a
                     monthly basis
                   </p>
                 </div>
                 <div className={styles.cardMedFooter}>
-                  <p>Support our Efforts</p>
+                  <p style={{ fontSize: "1.6em" }}>Support our Efforts</p>
                   {/* Custom Link Component */}
                   <CustomLink foreground="#043f2e" background="#c8f168" />
                 </div>
@@ -58,7 +58,7 @@ const Hero = () => {
               <div className={styles.smallcontentWrapper}>
                 <div className=""></div>
                 <div className="">
-                  <p>
+                  <p style={{ fontSize: "1.4em" }}>
                     Help them <br /> Excel
                   </p>
                 </div>
@@ -75,7 +75,7 @@ const Hero = () => {
             >
               <div className={styles.overlay}>
                 <span>Health and Sanitation</span> <br />
-                <span>
+                <span className={inter.className}>
                   Providing sanitary pads to girls in Secondary Schools through
                   patnerships
                 </span>
@@ -93,13 +93,15 @@ const Hero = () => {
                   className={styles.cardMedBody}
                   style={{ color: "#222222" }}
                 >
-                  <p style={{ fontSize: "0.7em" }}>
+                  <p>
                     Join <strong>500+</strong> people impacting young lives in
                     Kenya and beyond
                   </p>
                 </div>
                 <div className={styles.cardMedFooter}>
-                  <p style={{ color: "#222222" }}>Join the Community</p>
+                  <p style={{ color: "#222222", fontSize: "1.4em" }}>
+                    Join the Community
+                  </p>
                   {/* Custom Link Component */}
                   <CustomLink />
                 </div>
@@ -116,7 +118,9 @@ const Hero = () => {
             >
               <div className={styles.overlay}>
                 <span>Education</span> <br />
-                <span>Sponsor education to the less fortunate in Kenya</span>
+                <span className={inter.className}>
+                  Sponsor education to the less fortunate in Kenya
+                </span>
               </div>
             </div>
           </div>
@@ -136,7 +140,9 @@ const Hero = () => {
                   style={{ color: "#222222" }}
                 ></div>
                 <div className={styles.cardMedFooter}>
-                  <p style={{ color: "#222222" }}>Explore More</p>
+                  <p style={{ color: "#222222", fontSize: "1.6em" }}>
+                    Explore More
+                  </p>
                   {/* Custom Link Component */}
                   <CustomLink />
                 </div>
@@ -149,7 +155,7 @@ const Hero = () => {
               <div className={styles.smallcontentWrapper}>
                 <div className=""></div>
                 <div className="">
-                  <p style={{ color: "#c8f168" }}>
+                  <p style={{ color: "#c8f168", fontSize: "1.4em" }}>
                     Lorem Ipsum
                     <br /> Ador elit
                   </p>
