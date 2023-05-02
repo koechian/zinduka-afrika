@@ -5,7 +5,7 @@
   height: 3em;
   border-bottom: #6e6e6e58 solid 1px;
   position: sticky;
-  top: 0px;
+  top: 0;
   background-color: rgba(255, 255, 255, 0.629);
   backdrop-filter: blur(30px);
   z-index: 100;
@@ -24,10 +24,14 @@
   justify-content: space-evenly;
 }
 .logoText {
-  font-size: 1em;
-  letter-spacing: 4.5%;
+  font-size: 1.2em;
+  letter-spacing: 5px;
   color: var(--dark-green-hex);
   white-space: nowrap;
+}
+.logoText:hover{
+  transform: scale(1.1);
+  cursor: pointer;
 }
 .donateContainer {
   background-color: var(--dark-green-hex);
@@ -43,13 +47,12 @@
 }
 
 .donate {
-  letter-spacing: 3.5px;
-  font-size: 0.8em;
+  letter-spacing: 4px;
+  font-size: 1em;
 }
 .linkText {
   font-size: 1em;
 }
-
 @media (max-width: 767px) {
   .navLinks {
     display: none !important;
@@ -60,7 +63,7 @@
     justify-content: space-between;
   }
   .logoText {
-    letter-spacing: 2%;
+    letter-spacing: 2px;
   }
   .donateContainer {
     width: 30%;

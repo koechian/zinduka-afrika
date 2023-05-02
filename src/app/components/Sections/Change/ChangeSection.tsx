@@ -31,7 +31,7 @@ const ChangeSection = () => {
             <span>129,355+</span>
           </div>
           <p>Other like minded mentors, donors, leaders, speakers & sponsors</p>
-          <MyButton type={"Primary"} title={"Sign Me Up!"} />
+          <MyButton type={"Primary"} title={"Learn More"} />
         </div>
         <div className={[styles.right, styles.imageContainers].join(" ")}>
           <div
