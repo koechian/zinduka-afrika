@@ -1,30 +1,51 @@
-import React from "react";
-import { inter } from "@/app/fonts";
+"use client";
 
+import React, {useEffect, useRef} from "react";
+import { gsap } from "gsap";
+import { inter } from "@/app/fonts";
 import styles from "./hero.module.css";
 import MyButton from "../../Utils/button/Button";
 import CustomLink from "../../Utils/link/CustomLink";
 
+
 const Hero = () => {
+  const heroText = useRef<HTMLHeadingElement>(null);
+  const buttonContainer = useRef<HTMLDivElement>(null);
+  const cardsContainer = useRef<HTMLDivElement>(null);
+
+  useEffect(()=>{
+    let tl = gsap.timeline();
+
+    tl.from(
+        heroText.current,{opacity:0,y:-50,duration:1}
+    )
+    gsap.from(buttonContainer.current , {opacity:0,y:20,duration:1});
+
+    tl.from(Array.from(cardsContainer.current?.children ?? [])as Element[],
+        {opacity:0,x:20,stagger:0.1,duration:2})
+
+  },[])
+
+
   return (
     <>
-      <div className={styles.hero}>
-        <h1 className={styles.heroText}>
+      <div id={"hero"} className={styles.hero}>
+        <h1 ref={heroText} className={styles.heroText}>
           <span className={styles.heroSpan}>Arise!</span> <br /> Change the
           World
         </h1>
-        <p className={inter.className}>
+        <p className={[inter.className,"heroTextP"].join(" ")}>
           Impacting futures one at a time through spiritual growth,
           <br /> sports, health and education.
         </p>
-        <div className={[styles.buttonContainer, inter.className].join(" ")}>
+        <div ref={buttonContainer} className={[styles.buttonContainer, inter.className].join(" ")}>
           <MyButton type={"Primary"} title={"Donate Now"} />
 
           <MyButton type={"Secondary"} title={"Become a Mentor"} />
         </div>
       </div>
 
-      <div className={styles.cardsContainer}>
+      <div ref={cardsContainer} className={styles.cardsContainer}>
         <div className={styles.mobileTitle}>
           <h1>What we do</h1>
         </div>
