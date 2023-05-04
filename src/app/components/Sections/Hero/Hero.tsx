@@ -17,9 +17,9 @@ const Hero = () => {
     let tl = gsap.timeline();
 
     tl.from(
-        heroText.current,{opacity:0,y:-50,duration:1}
+        heroText.current,{opacity:0,y:-50,duration:1,delay:5}
     )
-    gsap.from(buttonContainer.current , {opacity:0,y:20,duration:1});
+    .from(buttonContainer.current , {opacity:0,y:20,duration:1});
 
     tl.from(Array.from(cardsContainer.current?.children ?? [])as Element[],
         {opacity:0,x:20,stagger:0.1,duration:2})
