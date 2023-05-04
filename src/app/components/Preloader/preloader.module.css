@@ -1,0 +1,53 @@
+.loader{
+    width: 100vw;
+    height: 100vh;
+    background: white !important;
+
+
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 10000;
+}
+.loaderClip{
+    position: absolute;
+    width: 100vw;
+    height: 33.33vh;
+    overflow: clip;
+    /*z-index: 1000;*/
+}
+.clipTop{
+    top: 0;
+    clip-path: inset(100%,0,0,0);
+    background: var(--dark-green-hex);
+}
+.clipBottom{
+    bottom: 0;
+    clip-path: inset(0,0,0,100%);
+    background: var(--dark-green-hex);
+}
+.clipCenter{
+    overflow: hidden;
+    position: relative;
+    width: 100vw;
+    height: 33.33vh;
+    top: 33.33vh;
+    mix-blend-mode: difference;
+
+}
+.marquee{
+    position: absolute;
+    top: 200%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    width: 200vw;
+    color: white;
+    font-size: 10em;
+}
+.marqueeContainer{
+    width: 100%;
+    padding-top: 0.2em;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
