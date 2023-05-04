@@ -12,8 +12,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html className={sentient.className} lang="en">
-      <body>{children}</body>
-    </html>
-  );
+      <html className={sentient.className} lang="en">
+      <body>{children}</body></html>
+  )
 }

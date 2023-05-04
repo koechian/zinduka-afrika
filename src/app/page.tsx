@@ -6,18 +6,21 @@ import Banner from "./components/Utils/banner/Banner";
 import Faq from "./components/Sections/Faq/Faq";
 import Footer from "./components/Sections/Footer/Footer";
 import Navigation from "./components/Utils/navigation/Navigation";
+import React from "react";
+import Preloader from "@/app/components/Preloader/Preloader";
 
 export default function Home() {
-  return (
-    <>
-      <Navbar />
-      <Navigation />
-      <Hero />
-      <Numbers />
-      <Banner />
-      <ChangeSection />
-      <Faq />
-      <Footer />
-    </>
-  );
+    return(
+                <>
+                    <Preloader/>
+                    <Navbar/>
+                    <Navigation/>
+                    <Hero/>
+                    <Numbers/>
+                    <ChangeSection/>
+                    <Banner/>
+                    <Faq/>
+                    <Footer/>
+                </>
+    );
 }
