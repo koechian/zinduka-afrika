@@ -12,6 +12,7 @@
   overflow: hidden;
   font-size: 1.4em;
 }
+
 .topBanner {
   background-color: var(--dark-green-hex);
   color: white;
@@ -19,8 +20,9 @@
 .bottomBanner {
   background-color: var(--neon-green-hex);
   transform-origin: bottom right;
-  transform: rotate(-0.2deg);
+  transform: rotate(-0.4deg);
   z-index: -1;
+  padding-right:100%;
 }
 .banner span {
   white-space: nowrap;
