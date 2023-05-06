@@ -1,11 +1,102 @@
-import React from "react";
+"use client";
+
+import React, { useEffect, useRef, useState } from "react";
 import styles from "./styles.module.css";
 import { boska, inter } from "@/app/fonts";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 
+gsap.registerPlugin(ScrollTrigger);
 const Numbers = () => {
+  const [impact, impactStats] = useState({ value: 0 });
+  const [partnerships, partnerStats] = useState({ value: 0 });
+  const [scholarships, scholarStats] = useState({ value: 0 });
+  const [sanitary, sanitaryStats] = useState({ value: 0 });
+  const wrapper = useRef<HTMLDivElement>(null);
+
+  const [animationTriggered, setAnimationTriggered] = useState(false);
+
+  useEffect(() => {
+    const impactTarget = {
+      value: impact.value,
+    };
+
+    const scholarshipsTarget = {
+      value: impact.value,
+    };
+    const partnershipsTarget = {
+      value: impact.value,
+    };
+    const sanitaryTarget = {
+      value: impact.value,
+    };
+
+    if (animationTriggered) return;
+
+    const observer = new IntersectionObserver((entries) =>
+      entries.forEach(
+        (entry) => {
+          if (entry.isIntersecting) {
+            gsap.to(impactTarget, {
+              duration: 3,
+              scrollTrigger: wrapper.current,
+              value: "+900",
+              roundProps: "value",
+              ease: "Power1.inOut",
+              position: 0,
+              onUpdate() {
+                impactStats({ value: impactTarget.value });
+              },
+            });
+            gsap.to(partnershipsTarget, {
+              duration: 3,
+              value: "+=60",
+              roundProps: "value",
+              ease: "Power1.inOut",
+              position: 0,
+              onUpdate() {
+                partnerStats({ value: partnershipsTarget.value });
+              },
+            });
+            gsap.to(scholarshipsTarget, {
+              duration: 3,
+              value: "+=50",
+              roundProps: "value",
+              ease: "Power1.inOut",
+              position: 0,
+              onUpdate() {
+                scholarStats({ value: scholarshipsTarget.value });
+              },
+            });
+            gsap.to(sanitaryTarget, {
+              duration: 2,
+              value: "+=2",
+              roundProps: "value",
+              ease: "Power1.inOut",
+              position: 0,
+              onUpdate() {
+                sanitaryStats({ value: sanitaryTarget.value });
+              },
+            });
+            setAnimationTriggered(true);
+          }
+        },
+        {
+          once: true, // Only trigger the animation once per element
+        }
+      )
+    );
+
+    // @ts-ignore
+    observer.observe(wrapper.current);
+    // @ts-ignore
+    return () => observer.unobserve(wrapper.current);
+  }, [animationTriggered, wrapper]);
+
   return (
     <section className={styles.wrapper}>
       <div
+        ref={wrapper}
         className={styles.contentWrapper}
         style={{ backgroundImage: "url(/numbers.webp" }}
       >
@@ -25,7 +116,7 @@ const Numbers = () => {
               className={boska.className}
               style={{ fontSize: "4em", fontWeight: "bold" }}
             >
-              900
+              {impact.value}
             </div>
             <div className={styles.text}>
               <p className={inter.className}>
@@ -38,7 +129,7 @@ const Numbers = () => {
               className={boska.className}
               style={{ fontSize: "4em", fontWeight: "bold" }}
             >
-              60
+              {partnerships.value}
             </div>
             <div className={styles.text}>
               <p className={inter.className}>
@@ -51,7 +142,7 @@ const Numbers = () => {
               className={boska.className}
               style={{ fontSize: "4em", fontWeight: "bold" }}
             >
-              50
+              {scholarships.value}
             </div>
             <div className={styles.text}>
               <p className={inter.className}>Scholarships awarded</p>
@@ -62,7 +153,7 @@ const Numbers = () => {
               className={boska.className}
               style={{ fontSize: "4em", fontWeight: "bold" }}
             >
-              2k+
+              {sanitary.value}k+
             </div>
             <div className={styles.text}>
               <p className={inter.className}>Sanitary Towels donated</p>
