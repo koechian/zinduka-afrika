@@ -55,7 +55,7 @@
   padding: 1% 0 0 0;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
-  border-top: solid #f2f4ea55 0.5px;
+  border-top: solid #f2f4ea55 1px;
   color: var(--beige-hex);
   font-size: 0.7em;
 }
@@ -75,14 +75,13 @@
 .donateButton {
   border-radius: 40px;
   width: 15em;
-  padding: 0.5em;
-  padding-left: 2.5em;
+  padding: 0.5em 0.5em 0.5em 2.5em;
   justify-content: space-between;
   align-items: center;
   font-size: 1.3em;
   background: rgba(151, 163, 161, 0.3);
-  box-shadow: 0px 5px 28px -5px rgba(0, 0, 0, 0.25),
-    inset 0px -2px 4px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 5px 28px -5px rgba(0, 0, 0, 0.25),
+    inset 0 -2px 4px rgba(0, 0, 0, 0.1);
 }
 
 /* Responsive styles */
@@ -120,4 +119,9 @@
   .personalAttrib {
     display: none !important;
   }
+}
+.locationLink:hover{
+  text-decoration: underline dashed 1px;
+  color: #c8f168;
+
 }
