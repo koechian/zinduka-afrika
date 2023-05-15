@@ -8,19 +8,21 @@ import Footer from "./components/Sections/Footer/Footer";
 import Navigation from "./components/Utils/navigation/Navigation";
 import React from "react";
 import Preloader from "@/app/components/Preloader/Preloader";
+import { Sheet } from "@/app/components/ui/sheet";
 
 export default function Home() {
-    return(
-                <>
-                    <Preloader/>
-                    <Navbar/>
-                    <Navigation/>
-                    <Hero/>
-                    <Numbers/>
-                    <ChangeSection/>
-                    <Banner/>
-                    <Faq/>
-                    <Footer/>
-                </>
-    );
+  return (
+    <>
+      <Preloader />
+      <Sheet />
+      <Navbar />
+      <Navigation />
+      <Hero />
+      <Numbers />
+      <ChangeSection />
+      <Banner />
+      <Faq />
+      <Footer />
+    </>
+  );
 }
