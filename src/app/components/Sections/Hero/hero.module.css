@@ -145,6 +145,9 @@
     padding: unset;
     background-size: cover;
   }
+  .card{
+    border-radius: 1em;
+  }
   .buttonContainer {
     gap: 2em;
     margin-bottom: 3em;
