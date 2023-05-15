@@ -4,9 +4,7 @@ import React, { useEffect, useRef, useState } from "react";
 import styles from "./styles.module.css";
 import { boska, inter } from "@/app/fonts";
 import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
 
-gsap.registerPlugin(ScrollTrigger);
 const Numbers = () => {
   const [impact, impactStats] = useState({ value: 0 });
   const [partnerships, partnerStats] = useState({ value: 0 });
@@ -39,11 +37,9 @@ const Numbers = () => {
           if (entry.isIntersecting) {
             gsap.to(impactTarget, {
               duration: 3,
-              scrollTrigger: wrapper.current,
               value: "+900",
               roundProps: "value",
               ease: "Power1.inOut",
-              position: 0,
               onUpdate() {
                 impactStats({ value: impactTarget.value });
               },
@@ -53,7 +49,6 @@ const Numbers = () => {
               value: "+=60",
               roundProps: "value",
               ease: "Power1.inOut",
-              position: 0,
               onUpdate() {
                 partnerStats({ value: partnershipsTarget.value });
               },
@@ -63,7 +58,6 @@ const Numbers = () => {
               value: "+=50",
               roundProps: "value",
               ease: "Power1.inOut",
-              position: 0,
               onUpdate() {
                 scholarStats({ value: scholarshipsTarget.value });
               },
@@ -73,7 +67,6 @@ const Numbers = () => {
               value: "+=2",
               roundProps: "value",
               ease: "Power1.inOut",
-              position: 0,
               onUpdate() {
                 sanitaryStats({ value: sanitaryTarget.value });
               },

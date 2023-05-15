@@ -57,7 +57,12 @@
   background-repeat: no-repeat;
   /* filter: grayscale(100%); */
 }
-
+.numberWrapper{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 5em;
+}
 @media (max-width: 843px) {
   .imageContainers {
     display: none;
