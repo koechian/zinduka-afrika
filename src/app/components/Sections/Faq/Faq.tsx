@@ -5,7 +5,7 @@ import Question from "../../Utils/question/Question";
 
 const Faq = () => {
   return (
-    <section className={styles.wrapper}>
+    <section id={"faq"} className={styles.wrapper}>
       <div
         className={styles.container}
         style={{ backgroundImage: "url(/faq.webp)" }}
@@ -15,7 +15,7 @@ const Faq = () => {
           style={{ backgroundImage: "url(./faq-logo.svg)" }}
         ></div>
         <div className={styles.heading}>
-          <h1>Frequenty Asked Questions</h1>
+          <h1>Frequently Asked Questions</h1>
           <h6 className={inter.className}>
             Any other questions?{" "}
             <a className={styles.link} href="mailto:zinduka-afrika@gmail.com">
@@ -30,21 +30,22 @@ const Faq = () => {
             answer="Zinduka Afrika (ZAF) is a Social Action agent of the International Christian Centre (ICC) registered in Kenya in March 2004 as a Non-Governmental Organization in Kenya and it operates as a ministry under the Social Transformation arm of International Christian Center (ICC) Church, which is an affiliate of Kenya Assemblies of God(KAG) church."
           />
           <Question
-            question="Can I donate goods and services instead of money?"
-            answer="Lorem ipsum dolor sit amet. Sit quos mollitia et enim modi At inventore optio. Ut atque exercitationem in debitis ratione sed 
-voluptate galisum est tempore veritatis."
+            question="Can I Purchase sanitary pads from Zinduka?"
+            answer="No. Zinduka Afrika does not directly produce or participate in the sale of sanitary pads, but we partner with organizations that produce them."
           />
 
           <Question
-            question="What capacity can I help in?"
-            answer="Lorem ipsum dolor sit amet. Sit quos mollitia et enim modi At inventore optio. Ut atque exercitationem in debitis ratione sed 
-voluptate galisum est tempore veritatis."
+            question="Who qualifies for support under Zinduka Afrika Foundation?"
+            answer="Everybody  in the comunity regardles of their tribe, race or religion but  to be considered, one needs to meet all the requirements under the outlined  selection criteria for each specific category."
           />
 
           <Question
-            question="Theoretical Question  4?"
-            answer="Lorem ipsum dolor sit amet. Sit quos mollitia et enim modi At inventore optio. Ut atque exercitationem in debitis ratione sed 
-voluptate galisum est tempore veritatis."
+            question="I am working but I have some time in my hands,once in a while. Can I still be of support to Zinduka Afrika whenever I get time ?"
+            answer="Yes.There is alot that you can be of support to Zinduka Afrika Foundation. We encourage volunteers to come serve with us with their giftings, talents, skills and resources."
+          />
+          <Question
+            question="How else can someone be a blessing to this ministry?"
+            answer="One could mentor a scholar, open up your work place for a job study, be a champion In the MHM Program, be a partner and support a scholar financially, Be a prayer partner, the opportunities are endless, it's up to you to deciede."
           />
         </div>
       </div>
