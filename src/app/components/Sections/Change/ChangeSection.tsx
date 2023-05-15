@@ -1,20 +1,99 @@
-import React from "react";
+"use client";
+
+import React, { useEffect, useRef, useState } from "react";
 import styles from "./styles.module.css";
 import MyButton from "../../Utils/button/Button";
+import gsap from "gsap";
 
 const ChangeSection = () => {
+  const wrapper = useRef(null);
+  const section = useRef<HTMLDivElement>(null);
+  const [numbers, numberValue] = useState({ value: 0 });
+  const [triggered, setAnimationTriggered] = useState(false);
+
+  // images ref
+  const image1 = useRef<HTMLDivElement>(null);
+  const image2 = useRef<HTMLDivElement>(null);
+  const image3 = useRef<HTMLDivElement>(null);
+  const image4 = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    // images animation
+    if (image1.current && image2.current && image3.current && image4.current) {
+      gsap.to(image1.current, {
+        x: () => gsap.utils.random(-40, 40),
+        y: () => gsap.utils.random(-40, 40),
+        duration: 3,
+        repeat: -1,
+        yoyo: true,
+      });
+      gsap.to(image2.current, {
+        x: () => gsap.utils.random(-40, 40),
+        y: () => gsap.utils.random(-40, 40),
+        duration: 3,
+        repeat: -1,
+        yoyo: true,
+      });
+      gsap.to(image3.current, {
+        x: () => gsap.utils.random(-40, 40),
+        y: () => gsap.utils.random(-40, 40),
+        duration: 3,
+        repeat: -1,
+        yoyo: true,
+      });
+      gsap.to(image4.current, {
+        x: () => gsap.utils.random(-40, 40),
+        y: () => gsap.utils.random(-40, 40),
+        duration: 3,
+        repeat: -1,
+        yoyo: true,
+      });
+    }
+
+    const target = {
+      value: numbers.value,
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting && !triggered) {
+          gsap.to(target, {
+            duration: 5,
+            value: "+129355",
+            roundProps: "value",
+            ease: "power2.out",
+            useTransform: true,
+            onUpdate() {
+              numberValue({ value: target.value });
+            },
+          });
+          setAnimationTriggered(true);
+        }
+      });
+    });
+
+    if (section.current) observer.observe(section.current);
+
+    return () => {
+      if (section.current) observer.unobserve(section.current);
+    };
+  }, [numbers, triggered, section, image1, image2, image3, image4]);
+
   return (
     <section
+      ref={wrapper}
       className={styles.wrapper}
       style={{ backgroundImage: "url(/change.svg)" }}
     >
-      <div className={styles.container}>
+      <div ref={section} className={styles.container}>
         <div className={[styles.left, styles.imageContainers].join(" ")}>
           <div
+            ref={image1}
             className={styles.imageLarge}
             style={{ backgroundImage: "url(/zinduka5.jpg)" }}
           ></div>
           <div
+            ref={image2}
             className={styles.imageSmall}
             style={{
               backgroundImage: "url(/zinduka4.jpg)",
@@ -27,14 +106,15 @@ const ChangeSection = () => {
             <br />
             With over:
           </p>
-          <div>
-            <span>129,355+</span>
+          <div className={styles.numberWrapper}>
+            <span>{numbers.value}+</span>
           </div>
           <p>Other like minded mentors, donors, leaders, speakers & sponsors</p>
           <MyButton type={"Primary"} title={"Learn More"} />
         </div>
         <div className={[styles.right, styles.imageContainers].join(" ")}>
           <div
+            ref={image3}
             className={styles.imageLarge}
             style={{
               alignSelf: "flex-start",
@@ -42,6 +122,7 @@ const ChangeSection = () => {
             }}
           ></div>
           <div
+            ref={image4}
             className={styles.imageSmall}
             style={{
               alignSelf: "flex-start",
