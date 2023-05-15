@@ -5,7 +5,7 @@ const Navigation = () => {
   return (
     <nav className={styles.nav}>
       <div className={styles.blur}></div>
-      <a className={styles.links} href="">
+      <a className={styles.links} href="#hero">
         Home
       </a>
       <a className={styles.links} href="">
@@ -14,7 +14,7 @@ const Navigation = () => {
       <a className={styles.links} href="">
         Gallery
       </a>
-      <a className={styles.links} href="">
+      <a className={styles.links} href="#faq">
         FAQ's
       </a>
     </nav>
