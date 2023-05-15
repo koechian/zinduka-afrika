@@ -64,8 +64,10 @@
   }
   .logoText {
     letter-spacing: 2px;
+    font-size: 0.9em;
   }
   .donateContainer {
     width: 30%;
+    font-size: 0.7em;
   }
 }
