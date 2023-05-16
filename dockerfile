@@ -1,17 +1,17 @@
 # syntax = docker /dockerfile:1
 
-FROM node:latest
+FROM node:alpine
 
-ENV NODE_ENV=development
+RUN mkdir -p /app
 
-WORKDIR .
+WORKDIR /app
 
-COPY package.json .
+COPY package*.json /app/
 
-RUN npm install 
+RUN npm install
 
-COPY . .
+COPY . /app
 
 EXPOSE 3000
 
-CMD ["npm","run","dev"]
+CMD ["yarn","dev"]
