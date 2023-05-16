@@ -10,15 +10,17 @@
   backdrop-filter: blur(30px);
   z-index: 100;
 }
-.nav div {
+.navLinks {
   height: 100%;
   display: flex;
   place-items: center;
+  width: 60%;
 }
 .linkContainer a:hover {
   color: var(--dark-green-hex);
 }
 .navLinks ul {
+  width: 100%;
   display: flex;
   align-items: center;
   justify-content: space-evenly;
@@ -34,11 +36,14 @@
   cursor: pointer;
 }
 .donateContainer {
+  display: flex;
+  place-items: center;
   background-color: var(--dark-green-hex);
   justify-content: center;
   width: 100%;
   transition: ease-in-out 250ms;
   color: var(--neon-green-hex);
+  height: 100%;
 }
 .donateContainer:hover {
   cursor: pointer;
