@@ -8,10 +8,11 @@ const Navigation = () => {
       <a className={styles.links} href="#hero">
         Home
       </a>
-      <a className={styles.links} href="">
-        About
-      </a>
-      <a className={styles.links} href="">
+      <a
+        className={styles.links}
+        href="https://zindukaafrika74.pixieset.com/"
+        target={"_blank"}
+      >
         Gallery
       </a>
       <a className={styles.links} href="#faq">
