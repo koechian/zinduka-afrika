@@ -8,7 +8,6 @@ import gsap from "gsap";
 const ChangeSection = () => {
   const wrapper = useRef(null);
   const section = useRef<HTMLDivElement>(null);
-  const [numbers, numberValue] = useState({ value: 0 });
   const [triggered, setAnimationTriggered] = useState(false);
 
   // images ref
@@ -49,35 +48,7 @@ const ChangeSection = () => {
         yoyo: true,
       });
     }
-
-    const target = {
-      value: numbers.value,
-    };
-
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting && !triggered) {
-          gsap.to(target, {
-            duration: 5,
-            value: "+129355",
-            roundProps: "value",
-            ease: "power2.out",
-            useTransform: true,
-            onUpdate() {
-              numberValue({ value: target.value });
-            },
-          });
-          setAnimationTriggered(true);
-        }
-      });
-    });
-
-    if (section.current) observer.observe(section.current);
-
-    return () => {
-      if (section.current) observer.unobserve(section.current);
-    };
-  }, [numbers, triggered, section, image1, image2, image3, image4]);
+  }, [triggered, section, image1, image2, image3, image4]);
 
   return (
     <section
@@ -107,7 +78,7 @@ const ChangeSection = () => {
             With over:
           </p>
           <div className={styles.numberWrapper}>
-            <span>{numbers.value}+</span>
+            <span>129,355+</span>
           </div>
           <p>Other like minded mentors, donors, leaders, speakers & sponsors</p>
           <MyButton type={"Primary"} title={"Learn More"} />
