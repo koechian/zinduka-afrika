@@ -6,7 +6,7 @@ import CustomLink from "../../Utils/link/CustomLink";
 
 const Footer = () => {
   return (
-    <div className={styles.wrapper}>
+    <div id={"footer"} className={styles.wrapper}>
       <div className={styles.container}>
         <div className={styles.top}>
           <div className={styles.leftItems}>
