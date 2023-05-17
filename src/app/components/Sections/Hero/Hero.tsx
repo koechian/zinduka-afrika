@@ -1,11 +1,20 @@
 "use client";
 
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 import { inter } from "@/app/fonts";
 import styles from "./hero.module.css";
 import MyButton from "../../Utils/button/Button";
 import CustomLink from "../../Utils/link/CustomLink";
+import {
+  Popover,
+  Trigger,
+  Root,
+  Portal,
+  Arrow,
+  Content,
+} from "@radix-ui/react-popover";
+import Image from "next/image";
 
 const Hero = () => {
   const heroText = useRef<HTMLHeadingElement>(null);
@@ -14,6 +23,7 @@ const Hero = () => {
 
   useEffect(() => {
     let tl = gsap.timeline();
+    const footers = document.querySelectorAll(".cardMedFooter");
 
     tl.from(heroText.current, {
       opacity: 0,
@@ -28,13 +38,32 @@ const Hero = () => {
       stagger: 0.1,
       duration: 2,
     });
+
+    //   card footer hover animation
+    footers.forEach((footer) => {
+      const handleMouseEnter = () => {
+        gsap.to(footer, { scale: 1.05, duration: 0.3, ease: "power3.in" });
+        console.log("hovered");
+      };
+      const handleMouseLeave = () => {
+        gsap.to(footer, { scale: 1, duration: 0.3, ease: "power3.out" });
+      };
+
+      footer.addEventListener("mouseenter", handleMouseEnter);
+      footer.addEventListener("mouseleave", handleMouseLeave);
+
+      return () => {
+        footer.removeEventListener("mouseenter", handleMouseEnter);
+        footer.removeEventListener("mouseleave", handleMouseLeave);
+      };
+    });
   }, []);
 
   return (
     <>
       <div id={"hero"} className={styles.hero}>
         <h1 ref={heroText} className={styles.heroText}>
-          <span className={styles.heroSpan}>Arise!!!</span> <br /> Change the
+          <span className={styles.heroSpan}>Arise!</span> <br /> Change the
           World
         </h1>
         <p className={[inter.className, "heroTextP"].join(" ")}>
@@ -45,9 +74,26 @@ const Hero = () => {
           ref={buttonContainer}
           className={[styles.buttonContainer, inter.className].join(" ")}
         >
-          <MyButton type={"Primary"} title={"Donate Now"} />
-
           <MyButton type={"Secondary"} title={"Become a Mentor"} />
+          <Root>
+            <Trigger className={styles.trigger}>Donate Now</Trigger>
+            <Portal>
+              <Content
+                className={[styles.popoverContent, inter.className].join(" ")}
+              >
+                <strong>M-PESA</strong> <br />
+                Paybill: 889900 <br />
+                Account: OVC
+                <br />
+                <hr />
+                <strong>Bank Details</strong> <br />
+                Branch: NCBA Bank <br />
+                Account:Zinduka Afrika <br />
+                Account Number:1000236698
+                <Arrow className={styles.popoverArrow} />
+              </Content>
+            </Portal>
+          </Root>
         </div>
       </div>
 
@@ -70,10 +116,36 @@ const Hero = () => {
                     monthly basis
                   </p>
                 </div>
-                <div className={styles.cardMedFooter}>
+                <div
+                  className={[styles.cardMedFooter, "cardMedFooter"].join(" ")}
+                >
                   <p style={{ fontSize: "1.6em" }}>Support our Efforts</p>
-                  {/* Custom Link Component */}
                   <CustomLink foreground="#043f2e" background="#c8f168" />
+                  <Root>
+                    <Trigger className={styles.trigger}>
+                      <div className={styles.invisiDiv}></div>
+                    </Trigger>
+                    <Portal>
+                      <Content
+                        className={[
+                          styles.popoverContent,
+                          inter.className,
+                        ].join(" ")}
+                      >
+                        <strong>M-PESA</strong> <br />
+                        Paybill: 889900 <br />
+                        Account: OVC
+                        <br />
+                        <hr />
+                        <strong>Bank Details</strong> <br />
+                        Branch: NCBA Bank <br />
+                        Account:Zinduka Afrika <br />
+                        Account Number:1000236698
+                        <Arrow className={styles.popoverArrow} />
+                      </Content>
+                    </Portal>
+                  </Root>
+                  {/* Custom Link Component */}
                 </div>
               </div>
             </div>
@@ -83,7 +155,7 @@ const Hero = () => {
             >
               {/* small card content */}
               <div className={styles.smallcontentWrapper}>
-                <div className=""></div>
+                <div className={styles.handDiv}></div>
                 <div className="">
                   <p style={{ fontSize: "1.4em" }}>
                     Help them <br /> Excel
@@ -125,13 +197,19 @@ const Hero = () => {
                     Kenya and beyond
                   </p>
                 </div>
-                <div className={styles.cardMedFooter}>
-                  <p style={{ color: "#222222", fontSize: "1.4em" }}>
-                    Join the Community
-                  </p>
-                  {/* Custom Link Component */}
-                  <CustomLink />
-                </div>
+                <a href="https://iccnairobi.org/">
+                  <div
+                    className={[styles.cardMedFooter, "cardMedFooter"].join(
+                      " "
+                    )}
+                  >
+                    <p style={{ color: "#222222", fontSize: "1.4em" }}>
+                      Join the Community
+                    </p>
+                    {/* Custom Link Component */}
+                    <CustomLink />
+                  </div>
+                </a>
               </div>
             </div>
           </div>
@@ -166,13 +244,19 @@ const Hero = () => {
                   className={styles.cardMedBody}
                   style={{ color: "#222222" }}
                 ></div>
-                <div className={styles.cardMedFooter}>
-                  <p style={{ color: "#222222", fontSize: "1.6em" }}>
-                    Explore More
-                  </p>
-                  {/* Custom Link Component */}
-                  <CustomLink />
-                </div>
+                <a href="https://www.facebook.com/people/Zinduka-Afrika/100067437003426/?paipv=0&eav=AfaungGYcbM5YgLSNDbFCPm9r6xm80t0MXuPGbv8wTCjnM7zSCLVEEbVTkSFCS023WU&_rdr">
+                  <div
+                    className={[styles.cardMedFooter, "cardMedFooter"].join(
+                      " "
+                    )}
+                  >
+                    <p style={{ color: "#222222", fontSize: "1.6em" }}>
+                      Explore More
+                    </p>
+                    {/* Custom Link Component */}
+                    <CustomLink />
+                  </div>
+                </a>
               </div>
             </div>
             <div
@@ -180,11 +264,11 @@ const Hero = () => {
               style={{ backgroundColor: "#043f2e" }}
             >
               <div className={styles.smallcontentWrapper}>
-                <div className=""></div>
+                <div className={styles.hopeDiv}></div>
                 <div className="">
                   <p style={{ color: "#c8f168", fontSize: "1.4em" }}>
-                    Lorem Ipsum
-                    <br /> Ador elit
+                    Be a beacon
+                    <br /> of Hope
                   </p>
                 </div>
               </div>
