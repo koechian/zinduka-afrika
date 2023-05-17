@@ -67,8 +67,8 @@ const Hero = () => {
           World
         </h1>
         <p className={[inter.className, "heroTextP"].join(" ")}>
-          Impacting futures one at a time through spiritual growth,
-          <br /> sports, health and education.
+          Impacting futures-one life at a time
+          <br /> through education and health.
         </p>
         <div
           ref={buttonContainer}
