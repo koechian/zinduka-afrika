@@ -8,7 +8,6 @@ import gsap from "gsap";
 const ChangeSection = () => {
   const wrapper = useRef(null);
   const section = useRef<HTMLDivElement>(null);
-  const [triggered, setAnimationTriggered] = useState(false);
 
   // images ref
   const image1 = useRef<HTMLDivElement>(null);
@@ -48,7 +47,7 @@ const ChangeSection = () => {
         yoyo: true,
       });
     }
-  }, [triggered, section, image1, image2, image3, image4]);
+  }, [section, image1, image2, image3, image4]);
 
   return (
     <section

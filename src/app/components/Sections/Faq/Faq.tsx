@@ -30,6 +30,10 @@ const Faq = () => {
             answer="Zinduka Afrika (ZAF) is a Social Action agent of the International Christian Centre (ICC) registered in Kenya in March 2004 as a Non-Governmental Organization in Kenya and it operates as a ministry under the Social Transformation arm of International Christian Center (ICC) Church, which is an affiliate of Kenya Assemblies of God(KAG) church."
           />
           <Question
+            question="What qualify as donations?"
+            answer="Anything that would support the beneficiaries really. From sanitary pads, school fees support to even food stuffs and gifts in kind. Anything that will help."
+          />
+          <Question
             question="Can I Purchase sanitary pads from Zinduka?"
             answer="No. Zinduka Afrika does not directly produce or participate in the sale of sanitary pads, but we partner with organizations that produce them."
           />
