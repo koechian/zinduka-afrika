@@ -1,4 +1,4 @@
-import React from "react";
+import React, { forwardRef } from "react";
 import styles from "./button.module.css";
 import { inter } from "@/app/fonts";
 
@@ -7,11 +7,13 @@ interface ButtonOptions {
   type: String;
 }
 
-const MyButton = ({ type, title }: ButtonOptions) => {
+const MyButton = forwardRef(({ type, title }: ButtonOptions, ref) => {
   switch (type as String) {
     case "Primary":
       return (
         <button
+          // @ts-ignore
+          ref={ref}
           className={[
             styles.primaryButton,
             styles.button,
@@ -24,6 +26,8 @@ const MyButton = ({ type, title }: ButtonOptions) => {
     case "Secondary":
       return (
         <button
+          // @ts-ignore
+          ref={ref}
           className={[
             inter.className,
             styles.secondaryButton,
@@ -36,6 +40,6 @@ const MyButton = ({ type, title }: ButtonOptions) => {
     default:
       return <button>{title}</button>;
   }
-};
+});
 
 export default MyButton;
