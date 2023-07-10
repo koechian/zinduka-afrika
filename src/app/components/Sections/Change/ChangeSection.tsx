@@ -16,6 +16,10 @@ const ChangeSection = () => {
   const image4 = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+
+    // wrapper animation
+    gsap.from(wrapper.current, {opacity:0, duration:0.7, y:-50})
+
     // images animation
     if (image1.current && image2.current && image3.current && image4.current) {
       gsap.to(image1.current, {

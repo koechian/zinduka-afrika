@@ -17,27 +17,13 @@ import {
 import Image from "next/image";
 
 const Hero = () => {
-  const heroText = useRef<HTMLHeadingElement>(null);
-  const buttonContainer = useRef<HTMLDivElement>(null);
-  const cardsContainer = useRef<HTMLDivElement>(null);
+  const heroSection = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    let tl = gsap.timeline();
     const footers = document.querySelectorAll(".cardMedFooter");
 
-    tl.from(heroText.current, {
-      opacity: 0,
-      y: -50,
-      duration: 1,
-      delay: 5,
-    }).from(buttonContainer.current, { opacity: 0, y: 20, duration: 1 });
+    gsap.from(heroSection.current, {opacity:0, duration:0.7, y:-50})
 
-    tl.from(Array.from(cardsContainer.current?.children ?? []) as Element[], {
-      opacity: 0,
-      x: 20,
-      stagger: 0.1,
-      duration: 2,
-    });
 
     //   card footer hover animation
     footers.forEach((footer) => {
@@ -61,8 +47,9 @@ const Hero = () => {
 
   return (
     <>
+      <section ref={heroSection} id={"heroSection"}>
       <div id={"hero"} className={styles.hero}>
-        <h1 ref={heroText} className={styles.heroText}>
+        <h1 className={styles.heroText}>
           <span className={styles.heroSpan}>Arise!</span> <br /> Change the
           World
         </h1>
@@ -71,7 +58,6 @@ const Hero = () => {
           <br /> through education and health.
         </p>
         <div
-          ref={buttonContainer}
           className={[styles.buttonContainer, inter.className].join(" ")}
         >
           <MyButton type={"Secondary"} title={"Become a Mentor"} />
@@ -97,7 +83,7 @@ const Hero = () => {
         </div>
       </div>
 
-      <div ref={cardsContainer} className={styles.cardsContainer}>
+      <div className={styles.cardsContainer}>
         <div className={styles.mobileTitle}>
           <h1>What we do</h1>
         </div>
@@ -322,6 +308,7 @@ const Hero = () => {
           </div>
         </div>
       </div>
+      </section>
     </>
   );
 };

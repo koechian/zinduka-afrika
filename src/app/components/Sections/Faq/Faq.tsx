@@ -1,13 +1,22 @@
-import React from "react";
+"use client";
+import React, {useRef,useEffect} from "react";
 import styles from "./faq.module.css";
 import { inter } from "@/app/fonts";
 import Question from "../../Utils/question/Question";
+import {gsap} from "gsap";
 
 const Faq = () => {
+
+  const containerWrapper = useRef<HTMLDivElement>(null)
+
+  useEffect(()=>{
+    gsap.from(containerWrapper.current, {opacity:0, duration:0.7, y:-50})
+  },[])
   return (
     <section id={"faq"} className={styles.wrapper}>
       <div
         className={styles.container}
+        ref={containerWrapper}
         style={{ backgroundImage: "url(/faq.webp)" }}
       >
         <div

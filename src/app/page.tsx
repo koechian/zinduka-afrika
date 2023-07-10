@@ -12,7 +12,6 @@ import Preloader from "@/app/components/Preloader/Preloader";
 export default function Home() {
   return (
     <>
-      <Preloader />
       <Navbar />
       <Navigation />
       <Hero />

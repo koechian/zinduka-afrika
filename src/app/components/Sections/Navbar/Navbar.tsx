@@ -13,13 +13,13 @@ const Navbar = () => {
   useEffect(() => {
     // Nav fold down animation
     let tl = gsap.timeline();
-    tl.from(navRef.current, { height: 0, opacity: 0, duration: 0.6, delay: 5 });
+    tl.from(navRef.current, { height: 0, opacity: 0, duration: 0.5 });
 
     // Individual Links stagger down animation
     tl.from(Array.from(linksRef.current?.children ?? []) as Element[], {
       opacity: 0,
       y: -10,
-      duration: 0.5,
+      duration: 0.3,
       stagger: 0.01,
     });
 

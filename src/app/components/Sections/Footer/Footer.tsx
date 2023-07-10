@@ -1,13 +1,22 @@
-import React from "react";
+"use client";
+import React, {useEffect, useRef} from "react";
 import styles from "./footer.module.css";
 import { inter } from "@/app/fonts";
 import { MdShareLocation } from "react-icons/md";
 import CustomLink from "../../Utils/link/CustomLink";
+import {gsap} from "gsap";
 
 const Footer = () => {
+
+  const container = useRef<HTMLDivElement>(null)
+
+  useEffect(()=>{
+    gsap.from(container.current, {opacity:0, duration:0.7, y:-50})
+  },[])
+
   return (
     <div id={"footer"} className={styles.wrapper}>
-      <div className={styles.container}>
+      <div ref={container} className={styles.container}>
         <div className={styles.top}>
           <div className={styles.leftItems}>
             <div className={styles.leftItems_top}>
