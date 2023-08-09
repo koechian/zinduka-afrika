@@ -81,9 +81,9 @@ const ChangeSection = () => {
             With over:
           </p>
           <div className={styles.numberWrapper}>
-            <span>129,355+</span>
+            <span>2500+</span>
           </div>
-          <p>Other like minded mentors, donors, leaders, speakers & sponsors</p>
+          <p>Other like minded mentors, donors, leaders, speakers, sponsors & beneficiaries</p>
 
         </div>
         <div className={[styles.right, styles.imageContainers].join(" ")}>
