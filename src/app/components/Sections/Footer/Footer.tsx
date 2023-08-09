@@ -57,7 +57,8 @@ const Footer = () => {
           <div className={styles.rightItems}>
             <div>
               <div>
-                <a href="">Our Work</a>
+                <a target="_Blank"
+                   href="https://iccnairobi.pixieset.com/zinduka/">Our Work</a>
                 <a href="">Our Story</a>
                 <a href="mailto:zinduka.afrika@gmail.com">Mail</a>
               </div>

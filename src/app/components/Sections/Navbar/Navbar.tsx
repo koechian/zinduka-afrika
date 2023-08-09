@@ -51,7 +51,7 @@ const Navbar = () => {
           <li>
             <div className="link-container ">
               <a className={styles.linkText} href="#">
-                Home
+                About Us
               </a>
             </div>
           </li>

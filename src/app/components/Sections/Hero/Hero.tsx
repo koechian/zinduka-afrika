@@ -15,6 +15,7 @@ import {
   Content,
 } from "@radix-ui/react-popover";
 import Image from "next/image";
+import {className} from "postcss-selector-parser";
 
 const Hero = () => {
   const heroSection = useRef<HTMLDivElement>(null);
@@ -47,7 +48,7 @@ const Hero = () => {
 
   return (
     <>
-      <section ref={heroSection} id={"heroSection"}>
+      <section className={styles.heroSection} ref={heroSection} id={"heroSection"}>
       <div id={"hero"} className={styles.hero}>
         <h1 className={styles.heroText}>
           <span className={styles.heroSpan}>Arise!</span> <br /> Change the
@@ -60,7 +61,7 @@ const Hero = () => {
         <div
           className={[styles.buttonContainer, inter.className].join(" ")}
         >
-          <MyButton type={"Secondary"} title={"Become a Mentor"} />
+          <MyButton type={"Secondary"} title={"Learn More"} />
           <Root>
             <Trigger className={styles.trigger}>Donate Now</Trigger>
             <Portal>
@@ -80,6 +81,80 @@ const Hero = () => {
               </Content>
             </Portal>
           </Root>
+        </div>
+
+        <div id={"popoverCards"} className={styles.popoverContainer}>
+
+          <a href={'/Zinduka.pdf'} download={'Zinduka Profile.pdf'} >
+          <div className={[styles.popoverCard,inter.className].join(" ")}>
+            <div className={styles.door}>
+              <h3 className={inter.className}>About Zinduka Afrika</h3>
+              <br/>
+              <p className={inter.className}>
+              Read more on our mission statement, our vision for the future and how we strive
+              to extend help across ethnic lines, social classes, academics and physical boundaries
+              to those in need.
+              </p>
+            </div>
+            <p>
+              From humble hearts to towering peaks,
+              In every soul, the fire speaks,
+              Unite as one, let hope unfurl,
+              Arise! Change the world.
+
+              Beyond the doubts that hold us down,
+              With courage strong, our spirits crown,
+              A destiny we can't but swirl,
+              Arise! Change the world.
+
+              Through struggles faced, we'll persevere,
+              With empathy, we'll dry each tear,
+              In unity, our strength is curled,
+              Arise! Change the world.
+            </p>
+            <div className={styles.flickCard}>
+             <aside>
+               <h3 className={inter.className}>Click to read</h3>
+             </aside>
+            </div>
+          </div>
+          </a>
+
+          <a href={'/Zinduka Education Programme.pdf'} download={'Education Programme.pdf'} >
+          <div className={[styles.popoverCard,inter.className].join(" ")}>
+            <div className={[styles.door,inter.className].join(" ")}>
+              <h3 className={inter.className}> Zinduka Afrika Education Programme</h3>
+              <br/>
+              <p className={inter.className}>
+              How the Zinduka Afrika Education Programme is impacting the education sector through
+              outreaches to schools, mentorship programmes, sanitary pads donations and scholarships.
+              </p>
+            </div>
+            <p>
+              From humble hearts to towering peaks,
+              In every soul, the fire speaks,
+              Unite as one, let hope unfurl,
+              Arise! Change the world.
+
+              Beyond the doubts that hold us down,
+              With courage strong, our spirits crown,
+              A destiny we can't but swirl,
+              Arise! Change the world.
+
+              Through struggles faced, we'll persevere,
+              With empathy, we'll dry each tear,
+              In unity, our strength is curled,
+              Arise! Change the world.
+            </p>
+            <div className={styles.flickCard}>
+              <aside>
+                <h3 className={inter.className}>Click to read</h3>
+              </aside>
+            </div>
+          </div>
+            </a>
+
+
         </div>
       </div>
 
@@ -102,37 +177,16 @@ const Hero = () => {
                     monthly basis
                   </p>
                 </div>
+
+                <a target={'_blank'} href="https://amref.org/position-statements/amref-health-africa-statement-on-addressing-period-poverty-and-stigma-in-kenya/#:~:text=The%20fact%20that%2065%25%20of,and%20preventing%20infection%20during%20menstruation.">
                 <div
                   className={[styles.cardMedFooter, "cardMedFooter"].join(" ")}
                 >
-                  <p style={{ fontSize: "1.6em" }}>Support our Efforts</p>
+                  <p style={{ fontSize: "1.6em" }}>Read about this</p>
                   <CustomLink foreground="#043f2e" background="#c8f168" />
-                  <Root>
-                    <Trigger className={styles.trigger}>
-                      <div className={styles.invisiDiv}></div>
-                    </Trigger>
-                    <Portal>
-                      <Content
-                        className={[
-                          styles.popoverContent,
-                          inter.className,
-                        ].join(" ")}
-                      >
-                        <strong>M-PESA</strong> <br />
-                        Paybill: 889900 <br />
-                        Account: OVC
-                        <br />
-                        <hr />
-                        <strong>Bank Details</strong> <br />
-                        Branch: NCBA Bank <br />
-                        Account:Zinduka Afrika <br />
-                        Account Number:1000236698
-                        <Arrow className={styles.popoverArrow} />
-                      </Content>
-                    </Portal>
-                  </Root>
                   {/* Custom Link Component */}
                 </div>
+                </a>
               </div>
             </div>
             <div
@@ -230,7 +284,7 @@ const Hero = () => {
                   className={styles.cardMedBody}
                   style={{ color: "#222222" }}
                 ></div>
-                <a href="https://www.facebook.com/people/Zinduka-Afrika/100067437003426/?paipv=0&eav=AfaungGYcbM5YgLSNDbFCPm9r6xm80t0MXuPGbv8wTCjnM7zSCLVEEbVTkSFCS023WU&_rdr">
+                <a target={'_blank'} href="https://www.facebook.com/people/Zinduka-Afrika/100067437003426/?paipv=0&eav=AfaungGYcbM5YgLSNDbFCPm9r6xm80t0MXuPGbv8wTCjnM7zSCLVEEbVTkSFCS023WU&_rdr">
                   <div
                     className={[styles.cardMedFooter, "cardMedFooter"].join(
                       " "
