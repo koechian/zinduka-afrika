@@ -50,8 +50,12 @@ const Navbar = () => {
         <ul ref={linksRef}>
           <li>
             <div className="link-container ">
-              <a className={styles.linkText} href="#">
-                About Us
+              <a
+                className={styles.linkText}
+                download={"Jan-June ZAF Newsletter.pdf"}
+                href={"/newsletter.pdf"}
+              >
+                Newsletter
               </a>
             </div>
           </li>
