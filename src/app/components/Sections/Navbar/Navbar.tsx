@@ -4,11 +4,95 @@ import React, { useEffect, useRef } from "react";
 import styles from "./navbar.module.css";
 import { inter, tenor_sans } from "@/app/fonts";
 import { gsap } from "gsap";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.min.css';
+import {
+  Sheet,
+  SheetContent,
+  SheetDescription,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from "@/components/ui/sheet"
+
 
 const Navbar = () => {
   const navRef = useRef<HTMLElement>(null);
   const linksRef = useRef<HTMLUListElement>(null);
   const donateRef = useRef<HTMLDivElement>(null);
+
+  // demo credentials
+  const demoCredentials = {
+    authURL : 'https://cybqa.pesapal.com/pesapalv3/api/Auth/RequestToken',
+    ipnURL:'https://cybqa.pesapal.com/pesapalv3/api/URLSetup/RegisterIPN',
+    ipnCallback:'https://zinduka-afrika-dev.vercel.app',
+    consumer_key:'qkio1BGGYAXTu2JOfm7XSXNruoZsrqEW',
+    consumer_secret:'osGQ364R49cXKeOYSpaOnT++rHs=',
+    header:{
+      'Accept': 'application/json',
+      'Content-Type':'application/json',
+    }
+  }
+
+  // live credentials
+  const credentials={
+    authURL:'https://pay.pesapal.com/v3/api/Auth/RequestToken',
+    ipnURL: 'https://pay.pesapal.com/v3/api/URLSetup/RegisterIPN'
+  }
+
+  const handleDonateClick = () => {
+    pesaPalAuth().then((token)=>{
+    return handleIPN(token).then((response)=>{
+      return (response["ipn_id"])
+    })
+    })
+
+  }
+
+  async function handleIPN(token){
+
+    let response = await fetch(demoCredentials.ipnURL, {
+      method:'POST',
+      headers:{
+        Accept:'application/json',
+        'Content-Type':'application/json',
+        Authorization: 'Bearer ' + token
+      },
+      body:JSON.stringify({
+        url:demoCredentials.ipnCallback,
+        ipn_notification_type:"GET"
+      })
+
+    })
+
+    return response.json()
+
+  }
+  async function pesaPalAuth(){
+      let response = await fetch(demoCredentials.authURL,
+          {
+            method:'POST',
+            headers:demoCredentials.header,
+            body:JSON.stringify({consumer_key: demoCredentials.consumer_key,consumer_secret:demoCredentials.consumer_secret})})
+          .then((response)=>{
+        return response.json()
+      }).then((responseData)=>{
+        if(responseData['status']=='200'){
+        let token = responseData['token']
+          return token
+        }else{
+          console.error("API Error: ",responseData.error.code)
+          toast.error("PesaPal Error", {
+            position: toast.POSITION.TOP_RIGHT
+          });
+        }
+      }).catch((error)=>{
+        toast.error("There has been an issue processing the request",{position:toast.POSITION.TOP_RIGHT})
+        console.log(error)
+      })
+
+    return response
+  }
 
   useEffect(() => {
     // Nav fold down animation
@@ -37,6 +121,7 @@ const Navbar = () => {
       }
   }, []);
   return (
+      <><ToastContainer/>
     <nav ref={navRef} className={styles.nav}>
       <div className={tenor_sans.className}>
         <h1
@@ -50,6 +135,24 @@ const Navbar = () => {
         <ul ref={linksRef}>
           <li>
             <div className="link-container ">
+              <a className={styles.linkText} href="#hero">
+                Home
+              </a>
+            </div>
+          </li>
+          <li className="ml-5">
+            <svg
+              width="5"
+              height="5"
+              viewBox="0 0 5 5"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <circle cx="2.5" cy="2.5" r="2.5" fill="#989898" />
+            </svg>
+          </li>
+          <li>
+            <div className="link-container ">
               <a
                 className={styles.linkText}
                 download={"Jan-June ZAF Newsletter.pdf"}
@@ -59,6 +162,7 @@ const Navbar = () => {
               </a>
             </div>
           </li>
+
           <li className="ml-5">
             <svg
               width="5"
@@ -100,33 +204,18 @@ const Navbar = () => {
               </a>
             </div>
           </li>
-          <li className="ml-5">
-            <svg
-              width="5"
-              height="5"
-              viewBox="0 0 5 5"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <circle cx="2.5" cy="2.5" r="2.5" fill="#989898" />
-            </svg>
-          </li>
-          <li className="ml-5">
-            <div className="link-container">
-              <a className={styles.linkText} href="#footer">
-                Contacts
-              </a>
-            </div>
-          </li>
+
         </ul>
       </div>
+
       <div
+          onClick={handleDonateClick}
         ref={donateRef}
         className={[inter.className, styles.donateContainer].join(" ")}
-      >
-        <span className={styles.donate}>DONATE</span>
+      ><span className={styles.donate}>DONATE</span>
       </div>
     </nav>
+      </>
   );
 };
 
