@@ -1,6 +1,6 @@
 "use client";
 
-import React, {useEffect, useRef, useState} from "react";
+import React, {FormEvent, useEffect, useRef, useState} from "react";
 import styles from "./navbar.module.css";
 import {inter, sentient, tenor_sans} from "@/app/fonts";
 import {gsap} from "gsap";
@@ -46,7 +46,7 @@ const Navbar = () => {
 
   }
 
-  async function handleIPN(token){
+  async function handleIPN(token: string){
 
     let response = await fetch(demoCredentials.ipnURL, {
       method:'POST',
@@ -101,7 +101,7 @@ const Navbar = () => {
   // State to store the selected option
   const [selectedOption, setSelectedOption] = useState('');
   // Function to handle the option selection
-  const handleOptionSelect = (option) => {
+  const handleOptionSelect = (option: any) => {
     setSelectedOption(option);
   };
 
@@ -123,13 +123,13 @@ const Navbar = () => {
     });
 
     // Function to handle input changes
-    const handleInputChange = (e) => {
+    const handleInputChange = (e: any) => {
       const { name, value } = e.target;
       setFormData({ ...formData, [name]: value });
     };
 
     // Function to handle form submission
-    const handleFormSubmit = (e) => {
+    const handleFormSubmit = (e: FormEvent<HTMLFormElement>) => {
       e.preventDefault();
       // Log or process the formData as needed
       console.log(formData);
