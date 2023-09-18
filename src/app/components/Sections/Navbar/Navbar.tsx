@@ -1,19 +1,14 @@
 "use client";
 
-import React, { useEffect, useRef } from "react";
+import React, {useEffect, useRef, useState} from "react";
 import styles from "./navbar.module.css";
-import { inter, tenor_sans } from "@/app/fonts";
-import { gsap } from "gsap";
-import { ToastContainer, toast } from 'react-toastify';
+import {inter, sentient, tenor_sans} from "@/app/fonts";
+import {gsap} from "gsap";
+import {toast, ToastContainer} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.min.css';
-import {
-  Sheet,
-  SheetContent,
-  SheetDescription,
-  SheetHeader,
-  SheetTitle,
-  SheetTrigger,
-} from "@/components/ui/sheet"
+import {Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTrigger,} from "@/components/ui/sheet"
+import {Tabs, TabsContent, TabsList, TabsTrigger} from "@/components/ui/tabs"
+import {Toggle} from "@/components/ui/toggle";
 
 
 const Navbar = () => {
@@ -21,6 +16,8 @@ const Navbar = () => {
   const linksRef = useRef<HTMLUListElement>(null);
   const donateRef = useRef<HTMLDivElement>(null);
 
+
+  // START HANDLE PESAPAL
   // demo credentials
   const demoCredentials = {
     authURL : 'https://cybqa.pesapal.com/pesapalv3/api/Auth/RequestToken',
@@ -69,30 +66,78 @@ const Navbar = () => {
 
   }
   async function pesaPalAuth(){
-      let response = await fetch(demoCredentials.authURL,
-          {
-            method:'POST',
-            headers:demoCredentials.header,
-            body:JSON.stringify({consumer_key: demoCredentials.consumer_key,consumer_secret:demoCredentials.consumer_secret})})
-          .then((response)=>{
-        return response.json()
-      }).then((responseData)=>{
-        if(responseData['status']=='200'){
-        let token = responseData['token']
-          return token
-        }else{
-          console.error("API Error: ",responseData.error.code)
-          toast.error("PesaPal Error", {
-            position: toast.POSITION.TOP_RIGHT
-          });
-        }
-      }).catch((error)=>{
-        toast.error("There has been an issue processing the request",{position:toast.POSITION.TOP_RIGHT})
-        console.log(error)
-      })
-
-    return response
+    return await fetch(demoCredentials.authURL,
+        {
+          method: 'POST',
+          headers: demoCredentials.header,
+          body: JSON.stringify({
+            consumer_key: demoCredentials.consumer_key,
+            consumer_secret: demoCredentials.consumer_secret
+          })
+        })
+        .then((response) => {
+          return response.json()
+        }).then((responseData) => {
+          if (responseData['status'] == '200') {
+            return responseData['token']
+          } else {
+            console.error("API Error: ", responseData.error.code)
+            toast.error("PesaPal Error", {
+              position: toast.POSITION.TOP_RIGHT
+            });
+          }
+        }).catch((error) => {
+          toast.error("There has been an issue processing the request", {position: toast.POSITION.TOP_RIGHT})
+          console.log(error)
+        })
   }
+
+  // END HANDLE PESAPAL
+
+  // ====================================
+
+  // START HANDLE DONATE TABS
+
+  // State to store the selected option
+  const [selectedOption, setSelectedOption] = useState('');
+  // Function to handle the option selection
+  const handleOptionSelect = (option) => {
+    setSelectedOption(option);
+  };
+
+  // END HANDLE DONATE TABS
+
+  // ==============================================
+
+  // START HANDLE FORM DATA
+
+    const [formData, setFormData] = useState({
+      frequency: '', // State to store frequency
+      currency: 'USD', // State to store currency
+      amount: '',   // State to store amount
+      title: 'Mr',    // State to store title
+      firstname: '', // State to store first name
+      lastname: '',  // State to store last name
+      email: '',     // State to store email
+      cause: '',     // State to store cause/project
+    });
+
+    // Function to handle input changes
+    const handleInputChange = (e) => {
+      const { name, value } = e.target;
+      setFormData({ ...formData, [name]: value });
+    };
+
+    // Function to handle form submission
+    const handleFormSubmit = (e) => {
+      e.preventDefault();
+      // Log or process the formData as needed
+      console.log(formData);
+    };
+
+  // END HANDLE FORM DATA
+
+  // START HANDLE ANIMATIONS
 
   useEffect(() => {
     // Nav fold down animation
@@ -120,6 +165,11 @@ const Navbar = () => {
         });
       }
   }, []);
+
+  // END HANDLE ANIMATIONS
+
+  // =======================================
+
   return (
       <><ToastContainer/>
     <nav ref={navRef} className={styles.nav}>
@@ -207,13 +257,145 @@ const Navbar = () => {
 
         </ul>
       </div>
-
       <div
-          onClick={handleDonateClick}
-        ref={donateRef}
-        className={[inter.className, styles.donateContainer].join(" ")}
-      ><span className={styles.donate}>DONATE</span>
+      onClick={handleDonateClick}
+      ref={donateRef}
+      className={[inter.className, styles.donateContainer].join(" ")}
+      >
+      <Sheet>
+        <SheetTrigger>
+            <span className={styles.donate}>DONATE</span>
+        </SheetTrigger>
+        <SheetContent className = {styles.sheet}>
+          <SheetHeader>
+            <SheetTitle> <span className={[styles.donateHeader,sentient.className].join(" ")}>Donate</span> </SheetTitle>
+            <SheetDescription>
+              <p className={[styles.sheetDescription,inter.className].join(" ")}>By making a donation, you can contribute to our mission of establishing effective and lasting support systems.</p>
+            </SheetDescription>
+          </SheetHeader>
+          <div className={styles.sheetContent}>
+
+            <form onSubmit={handleFormSubmit}>
+            <Tabs defaultValue="landing" className="w-[400px]">
+              <TabsContent value="landing">
+                <div className={styles.defaultContent}>
+                  <div>
+                    <div>
+                    <p className={[styles.defaultContentHeaders,inter.className].join(" ")}>How often would you like to give?</p>
+                    </div>
+                    <div>
+                    <Toggle name={"frequency"} value={"monthly"} className={[styles.toggle,inter.className].join(" ")}>Monthly</Toggle>
+                    <Toggle name={"frequency"} value={"once"} className={[styles.toggle,inter.className].join(" ")}>One Time Gift</Toggle>
+                    </div>
+                  </div>
+                  <div>
+                    <div>
+                    <p className={[styles.defaultContentHeaders,inter.className].join(" ")}>How much would you like to give?</p>
+                    </div>
+                    <div>
+                    <select onChange={handleInputChange}
+                            className={[styles.currencySelector,inter.className].join(" ")}
+                            name={"currency"}>
+                      <option value={"USD"}>USD</option>
+                      <option value={"EUR"}>EUR</option>
+                      <option value={"KES"}>KSH</option>
+                      <option value={"GBP"}>GBP</option>
+                      <option value={"AUD"}>AUD</option>
+                      <option value={"USD"}>USD</option>
+                      <option value={"ZAR"}>ZAR</option>
+                    </select>
+                    <input onChange={handleInputChange}
+                           className={[styles.amountInput,inter.className].join(" ")}
+                           name={"amount"}
+                           required
+                           min={1}
+                           type={"number"}></input>
+                    </div>
+                  </div>
+                  <div>
+                    <div>
+                    <p className={[styles.defaultContentHeaders,inter.className].join(" ")}>How would you like to give?</p>
+                    </div>
+                    <div>
+                    <Toggle onClick={() => handleOptionSelect('MPESA')} className={[styles.toggle,inter.className].join(" ")}>MPESA</Toggle>
+                    <Toggle onClick={() => handleOptionSelect('International')} className={[styles.toggle,inter.className].join(" ")}>International</Toggle>
+                    </div>
+                  </div>
+                </div>
+              </TabsContent>
+              <TabsContent value="next">
+                <div><h2 className={styles.tabtitle}>Your Details</h2></div>
+                {selectedOption == 'MPESA' ? (
+                // Render content for MPESA option
+                  <div>MPESA DETAILS</div>
+                ) : (
+                // Render content for International option
+                    <div className={styles.internationalContent}>
+                      <div>
+                        <select onChange={handleInputChange}
+                                className={[styles.internationalInputs,inter.className].join(" ")}
+                                placeholder={"Title"}
+                                name={"title"}
+                                defaultValue="Mr">
+                          <option value={"Mr"}>Mr.</option>
+                          <option value={"Mrs"}>Mrs.</option>
+                          <option value={"Miss"}>Miss.</option>
+                          <option value={"Ms"}>Ms.</option>
+                        </select>
+                      </div>
+                      <div>
+                        <input onChange={handleInputChange}
+                               required
+                               className={[styles.internationalInputs,inter.className].join(" ")}
+                               placeholder={"First Name"}
+                               name={"firstname"}
+                               type={"text"}></input>
+                        <input
+                            required
+                            onChange={handleInputChange}
+                            className={[styles.internationalInputs,inter.className].join(" ")}
+                            placeholder={"Last Name"}
+                            name={"lastname"}
+                            type={"text"}></input>
+                      </div>
+                      <div>
+                        <input
+                            required
+                            onChange={handleInputChange}
+                            className={[styles.internationalInputs,inter.className].join(" ")}
+                            placeholder={"Email"}
+                            type={"email"}
+                            name={"email"}></input>
+                      </div>
+                      <div>
+                        <input
+                            onChange={handleInputChange}
+                            className={[styles.internationalInputs,inter.className].join(" ")}
+                            placeholder={"Cause/Project donating to  (optional)"}
+                            type={"text"}
+                            name={"cause"}></input>
+                      </div>
+                      <div>
+                        <button type={"submit"} className={[styles.processDonation,inter.className].join(" ")}>
+                        Process Donation
+                      </button>
+                      </div>
+                    </div>
+                    )}
+              </TabsContent>
+              <div className={styles.pagination}>
+                <TabsList>
+                  <TabsTrigger value="landing">Donation</TabsTrigger>
+                  <TabsTrigger value="next">Your Details</TabsTrigger>
+                </TabsList>
+              </div>
+            </Tabs>
+            </form>
+          </div>
+        </SheetContent>
+      </Sheet>
       </div>
+
     </nav>
       </>
   );
