@@ -7,8 +7,15 @@ import {gsap} from "gsap";
 import {toast, ToastContainer} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.min.css';
 import {Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTrigger,} from "@/components/ui/sheet"
-import {Tabs, TabsContent, TabsList, TabsTrigger} from "@/components/ui/tabs"
-import {Toggle} from "@/components/ui/toggle";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger
+} from "@/components/ui/dialog";
+
 
 
 const Navbar = () => {
@@ -25,7 +32,7 @@ const Navbar = () => {
     ipnURL:'https://cybqa.pesapal.com/pesapalv3/api/URLSetup/RegisterIPN',
     ipnCallback:'https://zinduka-afrika-dev.vercel.app',
     submitOrder:'https://cybqa.pesapal.com/pesapalv3/api/Transactions/SubmitOrderRequest',
-    consumer_key:'qkio1BGGYAXTu2JOfm7XSXNruoZsrqEW',
+    consumer_key:"qkio1BGGYAXTu2JOfm7XSXNruoZsrqEW",
     consumer_secret:'osGQ364R49cXKeOYSpaOnT++rHs=',
     header:{
       'Accept': 'application/json',
@@ -60,7 +67,7 @@ const Navbar = () => {
         const data = await response.json();
 
         // return the token
-        return data.token;
+        return data["token"];
 
       } catch (error) {
         toast.error("There has been an issue processing the request", {
@@ -91,7 +98,7 @@ const Navbar = () => {
 
       const data = await response.json()
 
-      return data.ipn_id
+      return data["ipn_id"]
     }catch(error){
       console.error(error)
       throw error;
@@ -159,10 +166,9 @@ const Navbar = () => {
 
       //   4. send the payload
       orderDetails = await sendOrder(payload,token)
-    //   TODO add a spinner and gray out the form/button as it resolves
 
     //   5. redirect the user to the Pesapal page to complete the payment
-      redirect(orderDetails.redirect_url)
+      redirect(orderDetails["redirect_url"])
 
     }catch(error){
       console.error(error)
@@ -170,8 +176,7 @@ const Navbar = () => {
   }
 
   function redirect(url: string){
-    // TODO Add a dialog box to inform the user of the redirect
-    window.open(url)
+  window.open(url)
   }
 
   const showError = (message: string) => {
@@ -180,19 +185,6 @@ const Navbar = () => {
     });
   }
   // END HANDLE PESAPAL
-
-  // ====================================
-
-  // START HANDLE DONATE TABS
-
-  // State to store the selected option
-  const [selectedOption, setSelectedOption] = useState('');
-  // Function to handle the option selection
-  const handleOptionSelect = (option: any) => {
-    setSelectedOption(option);
-  };
-
-  // END HANDLE DONATE TABS
 
   // ==============================================
 
@@ -361,63 +353,9 @@ const Navbar = () => {
             </SheetDescription>
           </SheetHeader>
           <div className={styles.sheetContent}>
-
             <form onSubmit={handleFormSubmit}>
-            <Tabs defaultValue="landing" className="w-[400px]">
-              <TabsContent value="landing">
-                <div className={styles.defaultContent}>
-                  <div>
-                    <div>
-                    <p className={[styles.defaultContentHeaders,inter.className].join(" ")}>How often would you like to give?</p>
-                    </div>
-                    <div>
-                    <Toggle name={"frequency"} value={"monthly"} className={[styles.toggle,inter.className].join(" ")}>Monthly</Toggle>
-                    <Toggle name={"frequency"} value={"once"} className={[styles.toggle,inter.className].join(" ")}>One Time Gift</Toggle>
-                    </div>
-                  </div>
-                  <div>
-                    <div>
-                    <p className={[styles.defaultContentHeaders,inter.className].join(" ")}>How much would you like to give?</p>
-                    </div>
-                    <div>
-                    <select onChange={handleInputChange}
-                            className={[styles.currencySelector,inter.className].join(" ")}
-                            name={"currency"}>
-                      <option value={"USD"}>USD</option>
-                      <option value={"EUR"}>EUR</option>
-                      <option value={"KES"}>KSH</option>
-                      <option value={"GBP"}>GBP</option>
-                      <option value={"AUD"}>AUD</option>
-                      <option value={"USD"}>USD</option>
-                      <option value={"ZAR"}>ZAR</option>
-                    </select>
-                    <input onChange={handleInputChange}
-                           className={[styles.amountInput,inter.className].join(" ")}
-                           name={"amount"}
-                           required
-                           min={1}
-                           type={"number"}></input>
-                    </div>
-                  </div>
-                  <div>
-                    <div>
-                    <p className={[styles.defaultContentHeaders,inter.className].join(" ")}>How would you like to give?</p>
-                    </div>
-                    <div>
-                    <Toggle onClick={() => handleOptionSelect('MPESA')} className={[styles.toggle,inter.className].join(" ")}>MPESA</Toggle>
-                    <Toggle onClick={() => handleOptionSelect('International')} className={[styles.toggle,inter.className].join(" ")}>International</Toggle>
-                    </div>
-                  </div>
-                </div>
-              </TabsContent>
-              <TabsContent value="next">
                 <div><h2 className={styles.tabtitle}>Your Details</h2></div>
-                {selectedOption == 'MPESA' ? (
-                // Render content for MPESA option
-                  <div>MPESA DETAILS</div>
-                ) : (
-                // Render content for International option
-                    <div className={styles.internationalContent}>
+                <div className={styles.internationalContent}>
                       <div>
                         <select onChange={handleInputChange}
                                 className={[styles.internationalInputs,inter.className].join(" ")}
@@ -455,28 +393,55 @@ const Navbar = () => {
                             name={"email"}></input>
                       </div>
                       <div>
-                        <input
+                        <select onChange={handleInputChange}
+                                className={[styles.internationalInputs,inter.className].join(" ")}
+                                name={"currency"}>
+                          <option value={"USD"}>USD</option>
+                          <option value={"EUR"}>EUR</option>
+                          <option value={"KES"}>KSH</option>
+                          <option value={"GBP"}>GBP</option>
+                          <option value={"AUD"}>AUD</option>
+                          <option value={"USD"}>USD</option>
+                          <option value={"ZAR"}>ZAR</option>
+                        </select>
+                        <input onChange={handleInputChange}
+                               className={[styles.internationalInputs,inter.className, styles].join(" ")}
+                               name={"amount"}
+                               required
+                               placeholder={"Amount to give"}
+                               min={1}>
+                        </input>
+                      </div>
+                        <div>
+                        <textarea
                             onChange={handleInputChange}
                             className={[styles.internationalInputs,inter.className].join(" ")}
-                            placeholder={"Cause/Project donating to  (optional)"}
-                            type={"text"}
-                            name={"description"}></input>
+                            placeholder={"Leave a note :)"}
+                            name={"description"}
+                            rows="1" cols="30"
+                        >
+                        </textarea>
                       </div>
                       <div>
-                        <button onClick={onDonate} type={"submit"} className={[styles.processDonation,inter.className].join(" ")}>
-                        Process Donation
-                      </button>
+
+                        <Dialog>
+                          <DialogTrigger><button type={"submit"} className={[styles.processDonation,inter.className].join(" ")}>
+                            Process Donation
+                          </button></DialogTrigger>
+                          <DialogContent>
+                            <DialogHeader>
+                              <DialogTitle>Redirecting</DialogTitle>
+                              <DialogDescription>
+                                <span className={inter.className}>You are about to be redirected to a secure PesaPal window to complete your donation.</span>
+                              </DialogDescription>
+                            </DialogHeader>
+                            <button onClick={onDonate} type={"submit"} className={[styles.processDonation,inter.className].join(" ")}>
+                              Okay
+                            </button>
+                          </DialogContent>
+                        </Dialog>
                       </div>
                     </div>
-                    )}
-              </TabsContent>
-              <div className={styles.pagination}>
-                <TabsList>
-                  <TabsTrigger value="landing">Donation</TabsTrigger>
-                  <TabsTrigger value="next">Your Details</TabsTrigger>
-                </TabsList>
-              </div>
-            </Tabs>
             </form>
           </div>
         </SheetContent>

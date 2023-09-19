@@ -73,51 +73,11 @@
 }
 .sheetContent{
   width: 100%;
-  height: 60%;
+  aspect-ratio: 3/4;
   margin-top: 1em;
   background: #272727;
   border-radius: 3px;
   display:grid;
-}
-.defaultContent{
-  height: 100%;
-  display: grid;
-  grid-template-rows: auto auto auto;
-  justify-content: space-around;
-  gap: 4em;
-  align-items: center;
-}
-.defaultContent > div{
-  display: grid;
-  grid-template-rows: auto auto;
-  align-items: center;
-  justify-content: space-around;
-}
-.defaultContent > div > div:nth-of-type(2){
-  display: flex;
-  align-items: center;
-  justify-content: space-evenly;
-}
-.defaultContentHeaders{
-  color: white;
-  margin-bottom: 10px;
-}
-.toggle{
-  color: #c8f168;
-  border-radius: 3px;
-}
-.amountInput, .currencySelector{
-  outline: none;
-  padding: 5px;
-  max-width: 6em;
-  max-height: 2em;
-  background: #e7e9ed;
-  border-radius:3px;
-}
-.pagination{
-  display: flex;
-  justify-content: center;
-  margin-top: 1em;
 }
 .internationalInputs{
   outline: none;
@@ -142,7 +102,11 @@
 .internationalContent div:nth-of-type(2){
   display: grid;
   gap: 1.3em;
-}
+}.internationalContent div:nth-of-type(4){
+   display: flex;
+   align-content: flex-end;
+  gap: 10px;
+ }
 .processDonation{
   border-radius: 3px;
   background: #043f2e;
