@@ -19,10 +19,12 @@ const Navbar = () => {
 
   // START HANDLE PESAPAL
   // demo credentials
-  const demoCredentials = {
+  let demoCredentials = {
+    baseUrl:'https://cybqa.pesapal.com/pesapalv3/api/',
     authURL : 'https://cybqa.pesapal.com/pesapalv3/api/Auth/RequestToken',
     ipnURL:'https://cybqa.pesapal.com/pesapalv3/api/URLSetup/RegisterIPN',
     ipnCallback:'https://zinduka-afrika-dev.vercel.app',
+    submitOrder:'https://cybqa.pesapal.com/pesapalv3/api/Transactions/SubmitOrderRequest',
     consumer_key:'qkio1BGGYAXTu2JOfm7XSXNruoZsrqEW',
     consumer_secret:'osGQ364R49cXKeOYSpaOnT++rHs=',
     header:{
@@ -34,64 +36,149 @@ const Navbar = () => {
   // live credentials
   const credentials={
     authURL:'https://pay.pesapal.com/v3/api/Auth/RequestToken',
-    ipnURL: 'https://pay.pesapal.com/v3/api/URLSetup/RegisterIPN'
+    ipnURL: 'https://pay.pesapal.com/v3/api/URLSetup/RegisterIPN',
+    ipnCallback:'https://zinduka-afrika-dev.vercel.app',
+    submitOrder:'https://pay.pesapal.com/v3/api/Transactions/SubmitOrderRequest',
+
+    consumer_key:'bXSg3cBMj/7rEo+Fu1AC7oVkQ46sxIcu',
+    consumer_secret:'sTokxGpudA+VQDbzWOiKnsY6l5w=',
   }
 
-  const handleDonateClick = () => {
-    pesaPalAuth().then((token)=>{
-    return handleIPN(token).then((response)=>{
-      return (response["ipn_id"])
-    })
-    })
-
-  }
-
-  async function handleIPN(token: string){
-
-    let response = await fetch(demoCredentials.ipnURL, {
-      method:'POST',
-      headers:{
-        Accept:'application/json',
-        'Content-Type':'application/json',
-        Authorization: 'Bearer ' + token
-      },
-      body:JSON.stringify({
-        url:demoCredentials.ipnCallback,
-        ipn_notification_type:"GET"
-      })
-
-    })
-
-    return response.json()
-
-  }
-  async function pesaPalAuth(){
-    return await fetch(demoCredentials.authURL,
-        {
+    // Authentication -> returns token
+    async function authenticate(){
+      try {
+        // send auth request
+        const response = await fetch(demoCredentials.authURL, {
           method: 'POST',
           headers: demoCredentials.header,
           body: JSON.stringify({
             consumer_key: demoCredentials.consumer_key,
             consumer_secret: demoCredentials.consumer_secret
           })
+        });
+
+        const data = await response.json();
+
+        // return the token
+        return data.token;
+
+      } catch (error) {
+        toast.error("There has been an issue processing the request", {
+          position: toast.POSITION.TOP_RIGHT
+        });
+        console.error(error);
+        throw error; // Rethrow the error to propagate it
+      }
+    }
+
+
+  //   Register ipn url -> returns ipn id
+  async function registerIPN(token: string){
+
+    try {
+      const response = await fetch(demoCredentials.ipnURL, {
+        method: 'POST',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+          Authorization: 'Bearer ' + token
+        },
+        body: JSON.stringify({
+          url: demoCredentials.ipnCallback,
+          ipn_notification_type: "GET"
         })
-        .then((response) => {
-          return response.json()
-        }).then((responseData) => {
-          if (responseData['status'] == '200') {
-            return responseData['token']
-          } else {
-            console.error("API Error: ", responseData.error.code)
-            toast.error("PesaPal Error", {
-              position: toast.POSITION.TOP_RIGHT
-            });
-          }
-        }).catch((error) => {
-          toast.error("There has been an issue processing the request", {position: toast.POSITION.TOP_RIGHT})
-          console.log(error)
-        })
+      })
+
+      const data = await response.json()
+
+      return data.ipn_id
+    }catch(error){
+      console.error(error)
+      throw error;
+    }
+
   }
 
+  // gets and packages all the form data and any more information needed
+  // gets form data -> returns ready assembled data payload
+  function getData(formData: any, ipn_id: string){
+    return  {
+      id: Math.random() * Math.pow(10,17),
+      currency: formData["currency"],
+      amount: formData["amount"],
+      description: formData["description"],
+      callback_url:"https://zinduka-afrika-dev.vercel.app",
+      cancellation_url:"https://zinduka-afrika-dev.vercel.app",
+      notification_id: ipn_id,
+      billing_address: {
+        email_address: formData["email_address"],
+        first_name: formData["firstname"],
+        last_name: formData["lastname"]
+      }
+    }
+
+
+  }
+
+ //  send payment request to server
+
+  async function sendOrder(payload: any, token: string){
+    try{
+      const response = await fetch(demoCredentials.submitOrder,
+          {
+            method: "POST",
+            headers: {
+              Accept: 'application/json',
+              'Content-Type': 'application/json',
+              Authorization: 'Bearer ' + token
+            },
+            body: JSON.stringify(payload)
+          })
+
+      return await response.json()
+
+    }catch(error){
+      console.error(error)
+      // throw error
+    }
+  }
+
+ async function onDonate(){
+    let token,ipn_id,payload,orderDetails;
+
+    try {
+      //   1. Authenticate with pesapal servers
+
+      token = await authenticate()
+
+      //   2.Register the IPN
+      ipn_id = await registerIPN(token)
+
+      //   3. Get data to be submitted
+      payload = getData(formData, ipn_id)
+
+      //   4. send the payload
+      orderDetails = await sendOrder(payload,token)
+    //   TODO add a spinner and gray out the form/button as it resolves
+
+    //   5. redirect the user to the Pesapal page to complete the payment
+      redirect(orderDetails.redirect_url)
+
+    }catch(error){
+      console.error(error)
+    }
+  }
+
+  function redirect(url: string){
+    // TODO Add a dialog box to inform the user of the redirect
+    window.open(url)
+  }
+
+  const showError = (message: string) => {
+    toast.error(message, {
+      position: toast.POSITION.TOP_RIGHT
+    });
+  }
   // END HANDLE PESAPAL
 
   // ====================================
@@ -112,15 +199,16 @@ const Navbar = () => {
   // START HANDLE FORM DATA
 
     const [formData, setFormData] = useState({
-      frequency: '', // State to store frequency
+      id: Math.random() * (Math.pow(10,17)),
+      // frequency: '', // State to store frequency
       currency: 'USD', // State to store currency
       amount: '',   // State to store amount
       title: 'Mr',    // State to store title
       firstname: '', // State to store first name
       lastname: '',  // State to store last name
       email: '',     // State to store email
-      cause: '',     // State to store cause/project
-    });
+      description: '',     // State to store cause/project
+       });
 
     // Function to handle input changes
     const handleInputChange = (e: any) => {
@@ -131,8 +219,7 @@ const Navbar = () => {
     // Function to handle form submission
     const handleFormSubmit = (e: FormEvent<HTMLFormElement>) => {
       e.preventDefault();
-      // Log or process the formData as needed
-      console.log(formData);
+    //   Call data handler
     };
 
   // END HANDLE FORM DATA
@@ -171,7 +258,8 @@ const Navbar = () => {
   // =======================================
 
   return (
-      <><ToastContainer/>
+      <>
+        <ToastContainer/>
     <nav ref={navRef} className={styles.nav}>
       <div className={tenor_sans.className}>
         <h1
@@ -258,7 +346,6 @@ const Navbar = () => {
         </ul>
       </div>
       <div
-      onClick={handleDonateClick}
       ref={donateRef}
       className={[inter.className, styles.donateContainer].join(" ")}
       >
@@ -373,10 +460,10 @@ const Navbar = () => {
                             className={[styles.internationalInputs,inter.className].join(" ")}
                             placeholder={"Cause/Project donating to  (optional)"}
                             type={"text"}
-                            name={"cause"}></input>
+                            name={"description"}></input>
                       </div>
                       <div>
-                        <button type={"submit"} className={[styles.processDonation,inter.className].join(" ")}>
+                        <button onClick={onDonate} type={"submit"} className={[styles.processDonation,inter.className].join(" ")}>
                         Process Donation
                       </button>
                       </div>
