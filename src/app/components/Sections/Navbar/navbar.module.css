@@ -138,4 +138,10 @@
     width: 30%;
     font-size: 0.7em;
   }
+  .sheet{
+    width: 100vw;
+  }
+  .internationalInputs{
+    max-width: 65%;
+  }
 }

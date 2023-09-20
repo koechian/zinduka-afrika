@@ -3,7 +3,6 @@ import React, {useEffect, useRef} from "react";
 import styles from "./footer.module.css";
 import { inter } from "@/app/fonts";
 import { MdShareLocation } from "react-icons/md";
-import CustomLink from "../../Utils/link/CustomLink";
 import {gsap} from "gsap";
 
 const Footer = () => {
@@ -95,10 +94,10 @@ const Footer = () => {
             </a>
           </div>
           <div className={styles.donateButtonWrapper}>
-            <div className={styles.donateButton}>
-              Donate Now
-              <CustomLink foreground="#043F2E" background="#C8F168" />
-            </div>
+            {/*<div className={styles.donateButton}>*/}
+            {/*  Donate Now*/}
+            {/*  <CustomLink foreground="#043F2E" background="#C8F168" />*/}
+            {/*</div>*/}
           </div>
         </div>
       </div>

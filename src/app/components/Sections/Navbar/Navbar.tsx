@@ -49,6 +49,11 @@ const Navbar = () => {
 
     consumer_key:'bXSg3cBMj/7rEo+Fu1AC7oVkQ46sxIcu',
     consumer_secret:'sTokxGpudA+VQDbzWOiKnsY6l5w=',
+
+    header:{
+      'Accept': 'application/json',
+      'Content-Type':'application/json',
+    }
   }
 
     // Authentication -> returns token
@@ -57,10 +62,10 @@ const Navbar = () => {
         // send auth request
         const response = await fetch(demoCredentials.authURL, {
           method: 'POST',
-          headers: demoCredentials.header,
+          headers: credentials.header,
           body: JSON.stringify({
-            consumer_key: demoCredentials.consumer_key,
-            consumer_secret: demoCredentials.consumer_secret
+            consumer_key: credentials.consumer_key,
+            consumer_secret: credentials.consumer_secret
           })
         });
 
@@ -83,7 +88,7 @@ const Navbar = () => {
   async function registerIPN(token: string){
 
     try {
-      const response = await fetch(demoCredentials.ipnURL, {
+      const response = await fetch(credentials.ipnURL, {
         method: 'POST',
         headers: {
           Accept: 'application/json',
@@ -91,7 +96,7 @@ const Navbar = () => {
           Authorization: 'Bearer ' + token
         },
         body: JSON.stringify({
-          url: demoCredentials.ipnCallback,
+          url: credentials.ipnCallback,
           ipn_notification_type: "GET"
         })
       })
@@ -131,7 +136,7 @@ const Navbar = () => {
 
   async function sendOrder(payload: any, token: string){
     try{
-      const response = await fetch(demoCredentials.submitOrder,
+      const response = await fetch(credentials.submitOrder,
           {
             method: "POST",
             headers: {
@@ -179,11 +184,11 @@ const Navbar = () => {
   window.open(url)
   }
 
-  const showError = (message: string) => {
-    toast.error(message, {
-      position: toast.POSITION.TOP_RIGHT
-    });
-  }
+  // const showError = (message: string) => {
+  //   toast.error(message, {
+  //     position: toast.POSITION.TOP_RIGHT
+  //   });
+  // }
   // END HANDLE PESAPAL
 
   // ==============================================
@@ -418,7 +423,8 @@ const Navbar = () => {
                             className={[styles.internationalInputs,inter.className].join(" ")}
                             placeholder={"Leave a note :)"}
                             name={"description"}
-                            rows="1" cols="30"
+                            rows={1}
+                            cols={30}
                         >
                         </textarea>
                       </div>
