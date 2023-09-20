@@ -60,7 +60,7 @@ const Navbar = () => {
     async function authenticate(){
       try {
         // send auth request
-        const response = await fetch(demoCredentials.authURL, {
+        const response = await fetch(credentials.authURL, {
           method: 'POST',
           headers: credentials.header,
           body: JSON.stringify({
@@ -162,6 +162,7 @@ const Navbar = () => {
       //   1. Authenticate with pesapal servers
 
       token = await authenticate()
+      console.log(token)
 
       //   2.Register the IPN
       ipn_id = await registerIPN(token)
