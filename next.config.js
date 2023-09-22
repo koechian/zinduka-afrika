@@ -1,5 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  output:'export',
   webpackDevMiddleware: (config) => {
     config.watchOptions = {
       poll: 1000,

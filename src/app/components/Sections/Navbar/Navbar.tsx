@@ -119,8 +119,8 @@ const Navbar = () => {
       currency: formData["currency"],
       amount: formData["amount"],
       description: formData["description"],
-      callback_url:"https://zinduka-afrika-dev.vercel.app",
-      cancellation_url:"https://zinduka-afrika-dev.vercel.app",
+      callback_url:"https://zinduka-afrika.org/thankyou",
+      cancellation_url:"https://zinduka-afrika.org",
       notification_id: ipn_id,
       billing_address: {
         email_address: formData["email_address"],
