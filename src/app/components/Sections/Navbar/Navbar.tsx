@@ -434,7 +434,7 @@ const Navbar = () => {
                           <DialogTrigger><button type={"submit"} className={[styles.processDonation,inter.className].join(" ")}>
                             Process Donation
                           </button></DialogTrigger>
-                          <DialogContent style={{'z-index':'1000'}}>
+                          <DialogContent style={{'zIndex':1000}}>
                             <DialogHeader>
                               <DialogTitle><span className={styles.dialogTitle}>Redirecting</span></DialogTitle>
                               <DialogDescription>
