@@ -2,7 +2,6 @@ import React from "react";
 import styles from "@/app/components/Sections/Hero/hero.module.css";
 import style from "@/app/components/Sections/ThankYou/thankyou.module.css"
 import {inter} from "@/app/fonts";
-import {useRouter} from "next/navigation";
 
 export default function thanks() {
     return (

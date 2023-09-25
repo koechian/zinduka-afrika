@@ -1,13 +1,12 @@
 "use client";
 
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef} from "react";
 import { gsap } from "gsap";
 import { inter } from "@/app/fonts";
 import styles from "./hero.module.css";
 import MyButton from "../../Utils/button/Button";
 import CustomLink from "../../Utils/link/CustomLink";
 import {
-  Popover,
   Trigger,
   Root,
   Portal,
@@ -27,7 +26,6 @@ const Hero = () => {
     footers.forEach((footer) => {
       const handleMouseEnter = () => {
         gsap.to(footer, { scale: 1.05, duration: 0.3, ease: "power3.in" });
-        console.log("hovered");
       };
       const handleMouseLeave = () => {
         gsap.to(footer, { scale: 1, duration: 0.3, ease: "power3.out" });

@@ -119,7 +119,7 @@ const Navbar = () => {
       currency: formData["currency"],
       amount: formData["amount"],
       description: formData["description"],
-      callback_url:"https://zinduka-afrika.org/thankyou",
+      callback_url:"https://zinduka-afrika.org/thanks.html",
       cancellation_url:"https://zinduka-afrika.org",
       notification_id: ipn_id,
       billing_address: {
@@ -162,7 +162,6 @@ const Navbar = () => {
       //   1. Authenticate with pesapal servers
 
       token = await authenticate()
-      console.log(token)
 
       //   2.Register the IPN
       ipn_id = await registerIPN(token)
@@ -182,7 +181,7 @@ const Navbar = () => {
   }
 
   function redirect(url: string){
-  window.open(url)
+  window.location.replace(url)
   }
 
   // const showError = (message: string) => {
@@ -435,9 +434,9 @@ const Navbar = () => {
                           <DialogTrigger><button type={"submit"} className={[styles.processDonation,inter.className].join(" ")}>
                             Process Donation
                           </button></DialogTrigger>
-                          <DialogContent>
+                          <DialogContent style={{'z-index':'1000'}}>
                             <DialogHeader>
-                              <DialogTitle>Redirecting</DialogTitle>
+                              <DialogTitle><span className={styles.dialogTitle}>Redirecting</span></DialogTitle>
                               <DialogDescription>
                                 <span className={inter.className}>You are about to be redirected to a secure PesaPal window to complete your donation.</span>
                               </DialogDescription>

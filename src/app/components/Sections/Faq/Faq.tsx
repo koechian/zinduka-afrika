@@ -48,13 +48,13 @@ const Faq = () => {
           />
 
           <Question
-            question="Who qualifies for support under Zinduka Afrika Foundation?"
+            question="Who qualifies for support under Zinduka Afrika?"
             answer="Everybody  in the comunity regardles of their tribe, race or religion but  to be considered, one needs to meet all the requirements under the outlined  selection criteria for each specific category."
           />
 
           <Question
             question="I am working but I have some time in my hands,once in a while. Can I still be of support to Zinduka Afrika whenever I get time ?"
-            answer="Yes.There is alot that you can be of support to Zinduka Afrika Foundation. We encourage volunteers to come serve with us with their giftings, talents, skills and resources."
+            answer="Yes.There is alot that you can be of support to Zinduka Afrika. We encourage volunteers to come serve with us with their giftings, talents, skills and resources."
           />
           <Question
             question="How else can someone be a blessing to this ministry?"

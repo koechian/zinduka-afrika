@@ -86,7 +86,7 @@ const Footer = () => {
           </div>
         </div>
         <div className={styles.bottom}>
-          <div>© 2023 Zinduka Afrika Foundation</div>
+          <div>© 2023 Zinduka Afrika</div>
           <div className={[inter.className, styles.personalAttrib].join(" ")}>
             website by&nbsp;
             <a className={styles.link} href="https://koechian.live">

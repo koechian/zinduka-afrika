@@ -121,6 +121,9 @@
   transform: scale(1.03);
 
 }
+.dialogTitle{
+  color: #c8f168;
+}
 @media (max-width: 767px) {
   .navLinks {
     display: none !important;
@@ -143,5 +146,15 @@
   }
   .internationalInputs{
     max-width: 65%;
+  }
+  .donateHeader{
+    font-size: 0.9em;
+  }
+  .sheetDescription{
+    font-size: 0.75em;
+    margin-top: 5px;
+  }
+  .tabtitle{
+    font-size: 0.8em;
   }
 }
