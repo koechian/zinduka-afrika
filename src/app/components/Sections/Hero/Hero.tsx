@@ -4,15 +4,7 @@ import React, { useEffect, useRef} from "react";
 import { gsap } from "gsap";
 import { inter } from "@/app/fonts";
 import styles from "./hero.module.css";
-import MyButton from "../../Utils/button/Button";
 import CustomLink from "../../Utils/link/CustomLink";
-import {
-  Trigger,
-  Root,
-  Portal,
-  Arrow,
-  Content,
-} from "@radix-ui/react-popover";
 
 const Hero = () => {
   const heroSection = useRef<HTMLDivElement>(null);
@@ -53,32 +45,36 @@ const Hero = () => {
             <span className={styles.heroSpan}>Arise!</span> <br /> Change the
             World
           </h1>
-          <p className={[inter.className, "heroTextP"].join(" ")}>
-            Impacting futures-one life at a time
-            <br /> through education and health.
+          <p className={[inter.className, styles.heroTextP].join(" ")}>
+            To reflect the
+            compassionate nature of <br/>
+            God by facilitating social
+            transformation in the
+            community through <br/>
+            social and development interventions.
           </p>
-          <div className={[styles.buttonContainer, inter.className].join(" ")}>
-            <MyButton type={"Secondary"} title={"Learn More"} />
-            <Root>
-              <Trigger className={styles.trigger}>Donate Now</Trigger>
-              <Portal>
-                <Content
-                  className={[styles.popoverContent, inter.className].join(" ")}
-                >
-                  <strong>M-PESA</strong> <br />
-                  Paybill: 889900 <br />
-                  Account: OVC
-                  <br />
-                  <hr />
-                  <strong>Bank Details</strong> <br />
-                  Branch: NCBA Bank <br />
-                  Account:Zinduka Afrika <br />
-                  Account Number:1000236698
-                  <Arrow className={styles.popoverArrow} />
-                </Content>
-              </Portal>
-            </Root>
-          </div>
+          {/*<div className={[styles.buttonContainer, inter.className].join(" ")}>*/}
+          {/*  <MyButton type={"Secondary"} title={"Learn More"} />*/}
+          {/*  <Root>*/}
+          {/*    <Trigger className={styles.trigger}>Donate Now</Trigger>*/}
+          {/*    <Portal>*/}
+          {/*      <Content*/}
+          {/*        className={[styles.popoverContent, inter.className].join(" ")}*/}
+          {/*      >*/}
+          {/*        <strong>M-PESA</strong> <br />*/}
+          {/*        Paybill: 889900 <br />*/}
+          {/*        Account: OVC*/}
+          {/*        <br />*/}
+          {/*        <hr />*/}
+          {/*        <strong>Bank Details</strong> <br />*/}
+          {/*        Branch: NCBA Bank <br />*/}
+          {/*        Account:Zinduka Afrika <br />*/}
+          {/*        Account Number:1000236698*/}
+          {/*        <Arrow className={styles.popoverArrow} />*/}
+          {/*      </Content>*/}
+          {/*    </Portal>*/}
+          {/*  </Root>*/}
+          {/*</div>*/}
 
           <div id={"popoverCards"} className={styles.popoverContainer}>
             <a href={"/Zinduka.pdf"} download={"Zinduka Profile.pdf"}>
@@ -151,7 +147,7 @@ const Hero = () => {
           <div className={styles.mobileTitle}>
             <h1>What we do</h1>
           </div>
-          <div className={styles.coloumnsWrapper}>
+          <div className={styles.columnsWrapper}>
             {/* col 1 */}
             <div className={styles.cardsCol}>
               <div

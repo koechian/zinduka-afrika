@@ -11,15 +11,11 @@ export default function thanks() {
                 <h1 className={styles.heroText}>
                     <span className={styles.heroSpan}>Thank You!</span> <br />
                 </h1>
-                <p className={[inter.className,style.thankyou].join(" ")} style={{color:"#043f2e"}}>Your contribution will help us support underprivileged children's education. Your kindness and generosity are making a positive difference in the lives of those we serve.
-
-                    We are deeply grateful for your commitment to our cause and for being a part of our mission to reflect the compassionate nature of
-                    God by facilitating social transformation in the community through social and development
-                    interventions. Without donors like you, our work would not be possible.
-
-                    Once again, thank you for your generosity and compassion. We look forward to keeping you updated on the progress of our projects and the impact of your donation. Your support inspires us to continue striving for positive change in our community.
-
+                <p className={[inter.className,style.thankyou].join(" ")} style={{color:"#043f2e"}}>
+                    Thank you for your generous donation to Zinduka Afrika. Your support propels our God ordained mission forward, spreading hope and serving our community to influence change to a better tomorrow. May your generosity be a blessing to others as it has been to us.
                     If you have any questions or would like to learn more about our work, please feel free to reach out to us anytime.
+                    Email: info@zinduka-afrika.org
+                    Call us: +254 114925892
                 </p>
             </div>
             </div>

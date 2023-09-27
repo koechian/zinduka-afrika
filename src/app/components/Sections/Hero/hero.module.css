@@ -23,7 +23,7 @@
 .heroSpan {
   font-size: 2em;
 }
-.hero p {
+.heroTextP {
   text-align: center;
   color: grey;
   font-size: 1em;
@@ -125,7 +125,17 @@
   padding: 0 4em;
   height: 60vh;
 }
-.coloumnsWrapper {
+@media (max-width:2010px) {
+  .cardsContainer{
+    padding: 0 2em;
+    font-size: clamp(0.6em, 0.71em, 0.8em);
+  }
+  .hero{
+    padding: 0;
+  }
+}
+
+.columnsWrapper {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   gap: 0.5em;
@@ -290,7 +300,7 @@
     padding: 2em 1em 2em 1em;
     height: unset;
   }
-  .coloumnsWrapper {
+  .columnsWrapper {
     display: none;
   }
   .mobileColoumn {

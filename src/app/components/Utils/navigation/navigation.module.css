@@ -23,6 +23,7 @@
   background-color: #f2f4eac9;
   backdrop-filter: blur(2px) saturate(100%);
 }
+
 @media (max-width: 767px) {
   .nav {
     display: flex;
