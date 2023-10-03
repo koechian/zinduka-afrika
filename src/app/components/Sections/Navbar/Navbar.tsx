@@ -24,6 +24,7 @@ const Navbar = () => {
   const donateRef = useRef<HTMLDivElement>(null);
 
 
+
   // START HANDLE PESAPAL
   // demo credentials
   let demoCredentials = {
@@ -114,6 +115,9 @@ const Navbar = () => {
   // gets and packages all the form data and any more information needed
   // gets form data -> returns ready assembled data payload
   function getData(formData: any, ipn_id: string){
+    if (formData["description"] == null | formData["description"].trim() == ""){
+      formData["description"] = "General donation to Zinduka Afrika (This is a default message in-case the description is left blank)"
+    }
     return  {
       id: Math.random() * Math.pow(10,17),
       currency: formData["currency"],
@@ -128,8 +132,6 @@ const Navbar = () => {
         last_name: formData["lastname"]
       }
     }
-
-
   }
 
  //  send payment request to server
@@ -159,6 +161,7 @@ const Navbar = () => {
     let token,ipn_id,payload,orderDetails;
 
     try {
+
       //   1. Authenticate with pesapal servers
 
       token = await authenticate()
@@ -181,7 +184,7 @@ const Navbar = () => {
   }
 
   function redirect(url: string){
-  window.location.replace(url)
+    window.location.replace(url)
   }
 
   // const showError = (message: string) => {
