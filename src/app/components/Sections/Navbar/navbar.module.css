@@ -61,25 +61,26 @@
 .linkText {
   font-size: 0.8em;
 }
-.sheet{
+.sheet {
   z-index: 1000;
 }
-.donateHeader{
- font-size: 2em;
+.donateHeader {
+  font-size: 2em;
   color: #c8f168;
 }
-.sheetDescription{
-  margin-top:10px
+.sheetDescription {
+  margin-top: 10px;
 }
-.sheetContent{
+.sheetContent {
   width: 100%;
-  aspect-ratio: 3/4;
+  /* aspect-ratio: 3/4; */
+  border-radius: 3px;
   margin-top: 1em;
   background: #272727;
   border-radius: 3px;
-  display:grid;
+  display: grid;
 }
-.internationalInputs{
+.internationalInputs {
   outline: none;
   border: none;
   border-bottom: solid 2px #c8f168;
@@ -88,26 +89,27 @@
   font-size: 0.7em;
   background: transparent;
 }
-.tabtitle{
+.tabtitle {
   color: white;
   padding: 10px;
   font-size: 1.3em;
 }
-.internationalContent{
+.internationalContent {
   padding: 1em;
   display: grid;
-  grid-template-rows: repeat(6,auto);
+  grid-template-rows: repeat(6, auto);
   gap: 1.3em;
 }
-.internationalContent div:nth-of-type(2){
+.internationalContent div:nth-of-type(2) {
   display: grid;
   gap: 1.3em;
-}.internationalContent div:nth-of-type(4){
-   display: flex;
-   align-content: flex-end;
+}
+.internationalContent div:nth-of-type(4) {
+  display: flex;
+  align-content: flex-end;
   gap: 10px;
- }
-.processDonation{
+}
+.processDonation {
   border-radius: 3px;
   background: #043f2e;
   color: #c8f168;
@@ -115,23 +117,22 @@
   padding: 0.3em;
   transition: ease-out 300ms;
 }
-.processDonation:hover{
+.processDonation:hover {
   background: #c8f168;
   color: #043f2e;
   transform: scale(1.03);
-
 }
-.dialogTitle{
+.dialogTitle {
   color: #c8f168;
 }
-@media (max-width: 2010px){
-  .sheetContent{
+@media (max-width: 2010px) {
+  .sheetContent {
     font-size: 0.8em;
   }
-  .donateHeader{
+  .donateHeader {
     font-size: 1.5em;
   }
-  .sheetDescription{
+  .sheetDescription {
     font-size: 0.9em;
   }
 }
@@ -152,20 +153,20 @@
     width: 30%;
     font-size: 0.7em;
   }
-  .sheet{
+  .sheet {
     width: 100vw;
   }
-  .internationalInputs{
+  .internationalInputs {
     max-width: 65%;
   }
-  .donateHeader{
+  .donateHeader {
     font-size: 0.9em;
   }
-  .sheetDescription{
+  .sheetDescription {
     font-size: 0.75em;
     margin-top: 5px;
   }
-  .tabtitle{
+  .tabtitle {
     font-size: 0.8em;
   }
 }
