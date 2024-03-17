@@ -81,14 +81,14 @@ const Navbar = () => {
 
   // // gets and packages all the form data and any more information needed
   // // gets form data -> returns ready assembled data payload
-  function getData(formData: any) {
+  function getData(formData: any, token: string) {
     return {
-      BusinessShortCode: "88990",
+      BusinessShortCode: "889900",
       Timestamp: datestamp(),
-      TransactionType: "CustomerBuyGoodsOnline",
+      TransactionType: "CustomerPayBillOnline",
       Amount: formData["Amount"], // State to store amount
       PartyA: formData["PhoneNumber"],
-      PartyB: "88990",
+      PartyB: "1",
       PhoneNumber: formData["PhoneNumber"],
       CallBackURL: "https://zinduka-afrika.org/thanks.html",
       AccountReference: "Zinduka Afrika Foundation",
@@ -98,23 +98,31 @@ const Navbar = () => {
       firstname: formData["firstname"], // State to store first name
       lastname: formData["lastname"], // State to store last name
       email: formData["email"], // St
+
+      token: token,
     };
   }
 
   // //  send payment request to server
 
-  async function sendOrder(payload: any, token: string) {
+  async function sendOrder(payload: any) {
+    let data = JSON.stringify(payload);
     const response = await fetch("/api/express", {
       method: "POST",
       headers: {
         Accept: "application/json",
+        "Content-Type": "application/json",
       },
-      body: JSON.stringify(payload + { token: token }),
+      body: data,
     });
 
-    console.log(await response.json());
+    if (!response.ok) {
+      console.log(await response.text());
+    }
 
-    return await response.json();
+    console.log(await response.text());
+
+    // return await response.json();
   }
 
   async function onDonate() {
@@ -125,12 +133,11 @@ const Navbar = () => {
 
       token = await authenticate();
       console.log(token);
-
       //   2. Get data to be submitted
-      payload = getData(formData);
+      payload = getData(formData, token);
 
       //   4. send the payload to api
-      // orderDetails = await sendOrder(payload, token);
+      orderDetails = await sendOrder(payload);
 
       //   5. redirect the user to the Pesapal page to complete the payment
       // redirect(orderDetails["redirect_url"]);
