@@ -29,67 +29,93 @@ const Navbar = () => {
   const donateRef = useRef<HTMLDivElement>(null);
 
   // Authentication -> returns token
+
   async function authenticate() {
-    const auth = await fetch("/api/authorization", { method: "POST" });
-    return JSON.parse(await auth.json())["access_token"];
+    let token;
+    let timeset = localStorage.getItem("timeset");
+
+    let timepassed = Number(new Date().getTime() / 1000) - Number(timeset);
+
+    if (timepassed > 3500) {
+      getToken();
+    }
+
+    let stored = localStorage.getItem("authToken");
+    if (stored) {
+      token = JSON.parse(stored);
+    }
+
+    return token["access_token"];
   }
 
-  // //   Register ipn url -> returns ipn id
-  // async function registerIPN(token: string) {
-  //   try {
-  //     const response = await fetch(credentials.ipnURL, {
-  //       method: "POST",
-  //       headers: {
-  //         Accept: "application/json",
-  //         "Content-Type": "application/json",
-  //         Authorization: "Bearer " + token,
-  //       },
-  //       body: JSON.stringify({
-  //         url: credentials.ipnCallback,
-  //         ipn_notification_type: "GET",
-  //       }),
-  //     });
+  // get new token
+  async function getToken() {
+    const auth = await fetch("/api/authorization", { method: "POST" });
+    let token = JSON.parse(await auth.json());
 
-  //     const data = await response.json();
+    storeToken(token);
+  }
 
-  //     return data["ipn_id"];
-  //   } catch (error) {
-  //     console.error(error);
-  //     throw error;
-  //   }
-  // }
+  // Storing the Auth token in localStorage
+  function storeToken(token: any) {
+    localStorage.setItem("authToken", JSON.stringify(token));
+    localStorage.setItem("timeset", String(new Date().getTime() / 1000));
+  }
+
+  //
+
+  // Generate Datestamp for reqiest
+
+  function datestamp() {
+    const now = new Date();
+
+    const year = now.getFullYear().toString().padStart(4, "0");
+    const month = (now.getMonth() + 1).toString().padStart(2, "0");
+    const day = now.getDate().toString().padStart(2, "0");
+    const hours = now.getHours().toString().padStart(2, "0");
+    const minutes = now.getMinutes().toString().padStart(2, "0");
+    const seconds = now.getSeconds().toString().padStart(2, "0");
+
+    return `${year}${month}${day}${hours}${minutes}${seconds}`;
+  }
 
   // // gets and packages all the form data and any more information needed
   // // gets form data -> returns ready assembled data payload
   function getData(formData: any) {
     return {
-      Amount: formData["amount"],
-      TransactionDesc: formData["description"],
-      callback_url: "https://zinduka-afrika.org/thanks.html",
-      // cancellation_url: "https://zinduka-afrika.org",
+      BusinessShortCode: "88990",
+      Timestamp: datestamp(),
+      TransactionType: "CustomerBuyGoodsOnline",
+      Amount: formData["Amount"], // State to store amount
+      PartyA: formData["PhoneNumber"],
+      PartyB: "88990",
+      PhoneNumber: formData["PhoneNumber"],
+      CallBackURL: "https://zinduka-afrika.org/thanks.html",
+      AccountReference: "Zinduka Afrika Foundation",
+      TransactionDesc: "This donation will help further our goals",
+
+      title: formData["title"], // State to store title
+      firstname: formData["firstname"], // State to store first name
+      lastname: formData["lastname"], // State to store last name
+      email: formData["email"], // St
     };
   }
 
   // //  send payment request to server
 
-  // async function sendOrder(payload: any, token: string) {
-  //   try {
-  //     const response = await fetch(credentials.submitOrder, {
-  //       method: "POST",
-  //       headers: {
-  //         Accept: "application/json",
-  //         "Content-Type": "application/json",
-  //         Authorization: "Bearer " + token,
-  //       },
-  //       body: JSON.stringify(payload),
-  //     });
+  async function sendOrder(payload: any, token: string) {
+    const response = await fetch("/api/express", {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+      },
+      body: JSON.stringify(payload + { token: token }),
+    });
 
-  //     return await response.json();
-  //   } catch (error) {
-  //     console.error(error);
-  //     // throw error
-  //   }
-  // }
+    console.log(await response.json());
+
+    return await response.json();
+  }
 
   async function onDonate() {
     let token, payload, orderDetails;
@@ -98,12 +124,12 @@ const Navbar = () => {
       //   1. Authenticate with pesapal servers
 
       token = await authenticate();
+      console.log(token);
+
       //   2. Get data to be submitted
       payload = getData(formData);
 
-      console.log(payload);
-
-      //   4. send the payload
+      //   4. send the payload to api
       // orderDetails = await sendOrder(payload, token);
 
       //   5. redirect the user to the Pesapal page to complete the payment
@@ -366,6 +392,18 @@ const Navbar = () => {
                         name={"lastname"}
                         type={"text"}
                       ></input>
+
+                      <input
+                        required
+                        onChange={handleInputChange}
+                        className={[
+                          styles.internationalInputs,
+                          inter.className,
+                        ].join(" ")}
+                        placeholder={"Phone Number 254..."}
+                        type={"text"}
+                        name={"PhoneNumber"}
+                      />
                     </div>
                     <div>
                       <input
@@ -381,22 +419,6 @@ const Navbar = () => {
                       ></input>
                     </div>
                     <div>
-                      <select
-                        onChange={handleInputChange}
-                        className={[
-                          styles.internationalInputs,
-                          inter.className,
-                        ].join(" ")}
-                        name={"currency"}
-                      >
-                        <option value={"USD"}>USD</option>
-                        <option value={"EUR"}>EUR</option>
-                        <option value={"KES"}>KSH</option>
-                        <option value={"GBP"}>GBP</option>
-                        <option value={"AUD"}>AUD</option>
-                        <option value={"USD"}>USD</option>
-                        <option value={"ZAR"}>ZAR</option>
-                      </select>
                       <input
                         onChange={handleInputChange}
                         className={[
@@ -404,12 +426,13 @@ const Navbar = () => {
                           inter.className,
                           styles,
                         ].join(" ")}
-                        name={"amount"}
+                        name={"Amount"}
                         required
                         placeholder={"Amount to give"}
                         min={1}
                       ></input>
                     </div>
+
                     <div>
                       <textarea
                         onChange={handleInputChange}
