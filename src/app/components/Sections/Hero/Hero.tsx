@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useRef} from "react";
+import React, { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { inter } from "@/app/fonts";
 import styles from "./hero.module.css";
@@ -12,7 +12,7 @@ const Hero = () => {
   useEffect(() => {
     const footers = document.querySelectorAll(".cardMedFooter");
 
-    gsap.from(heroSection.current, { opacity: 0, duration: 0.7, y: -50 });
+    gsap.to(heroSection.current, { opacity: 1, duration: 0.7, y: -50 });
 
     //   card footer hover animation
     footers.forEach((footer) => {
@@ -46,11 +46,9 @@ const Hero = () => {
             World
           </h1>
           <p className={[inter.className, styles.heroTextP].join(" ")}>
-            To reflect the
-            compassionate nature of <br/>
-            God by facilitating social
-            transformation in the
-            community through <br/>
+            To reflect the compassionate nature of <br />
+            God by facilitating social transformation in the community through{" "}
+            <br />
             social and development interventions.
           </p>
           {/*<div className={[styles.buttonContainer, inter.className].join(" ")}>*/}

@@ -29,30 +29,10 @@ const Navbar = () => {
   const donateRef = useRef<HTMLDivElement>(null);
 
   // Authentication -> returns token
-  // async function authenticate() {
-  //   try {
-  //     // send auth request
-  //     const response = await fetch(credentials.authURL, {
-  //       method: "POST",
-  //       headers: credentials.header,
-  //       body: JSON.stringify({
-  //         consumer_key: credentials.consumer_key,
-  //         consumer_secret: credentials.consumer_secret,
-  //       }),
-  //     });
-
-  //     const data = await response.json();
-
-  //     // return the token
-  //     return data["token"];
-  //   } catch (error) {
-  //     toast.error("There has been an issue processing the request", {
-  //       position: toast.POSITION.TOP_RIGHT,
-  //     });
-  //     console.error(error);
-  //     throw error; // Rethrow the error to propagate it
-  //   }
-  // }
+  async function authenticate() {
+    const auth = await fetch("/api/authorization", { method: "POST" });
+    return JSON.parse(await auth.json())["access_token"];
+  }
 
   // //   Register ipn url -> returns ipn id
   // async function registerIPN(token: string) {
@@ -81,29 +61,14 @@ const Navbar = () => {
 
   // // gets and packages all the form data and any more information needed
   // // gets form data -> returns ready assembled data payload
-  // function getData(formData: any, ipn_id: string) {
-  //   if (
-  //     (formData["description"] == null) |
-  //     (formData["description"].trim() == "")
-  //   ) {
-  //     formData["description"] =
-  //       "General donation to Zinduka Afrika (This is a default message in-case the description is left blank)";
-  //   }
-  //   return {
-  //     id: Math.random() * Math.pow(10, 17),
-  //     currency: formData["currency"],
-  //     amount: formData["amount"],
-  //     description: formData["description"],
-  //     callback_url: "https://zinduka-afrika.org/thanks.html",
-  //     cancellation_url: "https://zinduka-afrika.org",
-  //     notification_id: ipn_id,
-  //     billing_address: {
-  //       email_address: formData["email_address"],
-  //       first_name: formData["firstname"],
-  //       last_name: formData["lastname"],
-  //     },
-  //   };
-  // }
+  function getData(formData: any) {
+    return {
+      Amount: formData["amount"],
+      TransactionDesc: formData["description"],
+      callback_url: "https://zinduka-afrika.org/thanks.html",
+      // cancellation_url: "https://zinduka-afrika.org",
+    };
+  }
 
   // //  send payment request to server
 
@@ -126,29 +91,27 @@ const Navbar = () => {
   //   }
   // }
 
-  // async function onDonate() {
-  //   let token, ipn_id, payload, orderDetails;
+  async function onDonate() {
+    let token, payload, orderDetails;
 
-  //   try {
-  //     //   1. Authenticate with pesapal servers
+    try {
+      //   1. Authenticate with pesapal servers
 
-  //     token = await authenticate();
+      token = await authenticate();
+      //   2. Get data to be submitted
+      payload = getData(formData);
 
-  //     //   2.Register the IPN
-  //     ipn_id = await registerIPN(token);
+      console.log(payload);
 
-  //     //   3. Get data to be submitted
-  //     payload = getData(formData, ipn_id);
+      //   4. send the payload
+      // orderDetails = await sendOrder(payload, token);
 
-  //     //   4. send the payload
-  //     orderDetails = await sendOrder(payload, token);
-
-  //     //   5. redirect the user to the Pesapal page to complete the payment
-  //     redirect(orderDetails["redirect_url"]);
-  //   } catch (error) {
-  //     console.error(error);
-  //   }
-  // }
+      //   5. redirect the user to the Pesapal page to complete the payment
+      // redirect(orderDetails["redirect_url"]);
+    } catch (error) {
+      console.error(error);
+    }
+  }
 
   // function redirect(url: string) {
   //   window.location.replace(url);
@@ -165,60 +128,67 @@ const Navbar = () => {
 
   // // START HANDLE FORM DATA
 
-  // const [formData, setFormData] = useState({
-  //   id: Math.random() * Math.pow(10, 17),
-  //   // frequency: '', // State to store frequency
-  //   currency: "USD", // State to store currency
-  //   amount: "", // State to store amount
-  //   title: "Mr", // State to store title
-  //   firstname: "", // State to store first name
-  //   lastname: "", // State to store last name
-  //   email: "", // State to store email
-  //   description: "", // State to store cause/project
-  // });
+  const [formData, setFormData] = useState({
+    BusinessShortCode: "88990",
+    Passsword: "",
+    Timestamp: new Date().getTime(),
+    TransactionType: "CustomerBuyGoodsOnline",
+    Amount: "", // State to store amount
+    PartyA: "", // Phone number
+    PartyB: "88990",
+    PhoneNumber: "",
+    CallBackURL: "",
+    AccountReference: "Zinduka Afrika Foundation",
+    TransactionDesc: "This donation will help further our goals",
+    // State to store cause/project
+    title: "Mr", // State to store title
+    firstname: "", // State to store first name
+    lastname: "", // State to store last name
+    email: "", // State to store email
+  });
 
-  // // Function to handle input changes
-  // const handleInputChange = (e: any) => {
-  //   const { name, value } = e.target;
-  //   setFormData({ ...formData, [name]: value });
-  // };
+  // Function to handle input changes
+  const handleInputChange = (e: any) => {
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
+  };
 
-  // // Function to handle form submission
-  // const handleFormSubmit = (e: FormEvent<HTMLFormElement>) => {
-  //   e.preventDefault();
-  //   //   Call data handler
-  // };
+  // Function to handle form submission
+  const handleFormSubmit = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    //   Call data handler
+  };
 
   // END HANDLE FORM DATA
 
   // START HANDLE ANIMATIONS
 
-  useEffect(() => {
-    // Nav fold down animation
-    let tl = gsap.timeline();
-    tl.from(navRef.current, { height: 0, opacity: 0, duration: 0.5 });
+  // useEffect(() => {
+  //   // Nav fold down animation
+  //   let tl = gsap.timeline();
+  //   tl.from(navRef.current, { height: 0, opacity: 0, duration: 0.5 });
 
-    // Individual Links stagger down animation
-    tl.from(Array.from(linksRef.current?.children ?? []) as Element[], {
-      opacity: 0,
-      y: -10,
-      duration: 0.3,
-      stagger: 0.01,
-    });
+  //   // Individual Links stagger down animation
+  //   tl.from(Array.from(linksRef.current?.children ?? []) as Element[], {
+  //     opacity: 0,
+  //     y: -10,
+  //     duration: 0.3,
+  //     stagger: 0.01,
+  //   });
 
-    // links hover animation
-    const links = linksRef.current?.children;
+  //   // links hover animation
+  //   const links = linksRef.current?.children;
 
-    if (links)
-      for (let i = 0; i < links.length; i++) {
-        links[i].addEventListener("mouseenter", () => {
-          gsap.to(links[i], { scale: 1.15, color: "#043f2e", duration: 0.3 });
-        });
-        links[i].addEventListener("mouseleave", () => {
-          gsap.to(links[i], { scale: 1, color: "black", duration: 0.3 });
-        });
-      }
-  }, []);
+  //   if (links)
+  //     for (let i = 0; i < links.length; i++) {
+  //       links[i].addEventListener("mouseenter", () => {
+  //         gsap.to(links[i], { scale: 1.15, color: "#043f2e", duration: 0.3 });
+  //       });
+  //       links[i].addEventListener("mouseleave", () => {
+  //         gsap.to(links[i], { scale: 1, color: "black", duration: 0.3 });
+  //       });
+  //     }
+  // }, []);
 
   // END HANDLE ANIMATIONS
 
