@@ -1,5 +1,4 @@
 export async function POST(request: Request) {
-  let code = encoder();
   try {
     const response = await fetch(
       "https://sandbox.safaricom.co.ke/oauth/v1/generate?grant_type=client_credentials",
@@ -23,7 +22,6 @@ export async function POST(request: Request) {
 }
 
 function encoder() {
-  console.log(process.env.KEY);
   return Buffer.from(
     process.env.KEY + ":" + process.env.SECRET,
     "utf-8"
